@@ -1,0 +1,25 @@
+<section id="galerie" class="container" style="padding: 0 0 72px;">
+  <p class="kicker">Galerie</p>
+  <h2 style="margin:10px 0 18px;">Einblicke in den Alltag</h2>
+
+  <div class="card" style="padding:18px;">
+    <div style="display:grid; gap:12px; grid-template-columns: repeat(3, minmax(0,1fr));">
+      <img src="/images/hero.jpg" alt="Galerie Bild 1" style="border-radius:14px; border:1px solid var(--border);" />
+      <img src="/images/hero.jpg" alt="Galerie Bild 2" style="border-radius:14px; border:1px solid var(--border);" />
+      <img src="/images/hero.jpg" alt="Galerie Bild 3" style="border-radius:14px; border:1px solid var(--border);" />
+      <img src="/images/hero.jpg" alt="Galerie Bild 4" style="border-radius:14px; border:1px solid var(--border);" />
+      <img src="/images/hero.jpg" alt="Galerie Bild 5" style="border-radius:14px; border:1px solid var(--border);" />
+      <img src="/images/hero.jpg" alt="Galerie Bild 6" style="border-radius:14px; border:1px solid var(--border);" />
+    </div>
+
+    <p style="margin:14px 0 0; color:var(--muted); font-size:14px;">
+      Tipp: Ersetze diese Platzhalter später durch echte Fotos (einheitliche Farben/Belichtung).
+    </p>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 900px){
+    section .card > div{ grid-template-columns: 1fr !important; }
+  }
+</style>
