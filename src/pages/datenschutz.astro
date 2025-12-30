@@ -2,9 +2,25 @@
 import Layout from "../layouts/Layout.astro";
 import TopBar from "../components/TopBar.astro";
 import { site } from "../config/site";
+
+const hasEmail = typeof site.email === "string" && site.email.trim().length > 3;
+
+const hostingProvider =
+  typeof site.legal?.hostingProvider === "string" ? site.legal.hostingProvider.trim() : "";
+
+const lastUpdated =
+  typeof site.legal?.privacyLastUpdated === "string" ? site.legal.privacyLastUpdated.trim() : "";
+
+const missing: string[] = [];
+if (!hasEmail) missing.push("E-Mail-Adresse (optional, aber empfohlen)");
+if (!hostingProvider) missing.push("Hosting-Anbieter (z. B. Cloudflare Pages)");
+if (!lastUpdated) missing.push("Stand der Datenschutzerklärung (Datum)");
 ---
 
-<Layout title={`Datenschutz · ${site.name}`} description="Datenschutzerklärung (DSGVO) für diese Website.">
+<Layout
+  title={`Datenschutz · ${site.name}`}
+  description="Datenschutzerklärung (DSGVO) für diese Website."
+>
   <TopBar />
 
   <main class="mx-auto max-w-5xl px-4 py-12">
@@ -18,64 +34,82 @@ import { site } from "../config/site";
 
     <div class="mt-10 grid gap-6">
       <!-- Verantwortlicher -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">1. Verantwortlicher</h2>
         <div class="mt-3 text-sm text-slate-700 space-y-1">
           <div class="font-semibold">{site.name}</div>
           <div>{site.person}</div>
+          <div>{site.address1}, {site.address2}</div>
           <div>
-            {site.address1}, {site.address2}
+            Telefon:{" "}
+            <a class="font-medium hover:underline" href={`tel:${site.phoneRaw}`}>
+              {site.phoneDisplay}
+            </a>
           </div>
-          <div>Telefon: {site.phoneDisplay}</div>
-          <div>
-            E-Mail: <span class="font-medium">[BITTE EINTRAGEN]</span>
-          </div>
+          {hasEmail && (
+            <div>
+              E-Mail:{" "}
+              <a class="font-medium hover:underline" href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
       <!-- Hosting / Server-Logs -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">2. Hosting und Server-Logfiles</h2>
+
         <p class="mt-3 text-sm text-slate-700">
-          Beim Aufruf dieser Website werden durch den Hosting-Anbieter technisch notwendige Daten verarbeitet, um die Website auszuliefern
-          und die Sicherheit zu gewährleisten (sog. Server-Logfiles). Dazu können insbesondere gehören: IP-Adresse, Datum und Uhrzeit
-          des Zugriffs, abgerufene Seite/Datei, übertragene Datenmenge, User-Agent (Browser/OS), Referrer-URL sowie der anfragende Provider.
+          Beim Aufruf dieser Website werden durch den Hosting-Anbieter technisch notwendige Daten verarbeitet,
+          um die Website auszuliefern und die Sicherheit zu gewährleisten (Server-Logfiles).
+          Dazu können insbesondere gehören: IP-Adresse, Datum und Uhrzeit des Zugriffs, abgerufene Seite/Datei,
+          übertragene Datenmenge, User-Agent (Browser/OS), Referrer-URL sowie der anfragende Provider.
         </p>
+
         <p class="mt-3 text-sm text-slate-700">
           <span class="font-medium">Zweck:</span> Stabilität und Sicherheit der Website, Missbrauchserkennung, Fehleranalyse.
         </p>
         <p class="mt-2 text-sm text-slate-700">
-          <span class="font-medium">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an sicherem Betrieb).
+          <span class="font-medium">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
         </p>
-        <p class="mt-2 text-sm text-slate-700">
-          <span class="font-medium">Hosting-Anbieter:</span> <span class="font-medium">[BITTE EINTRAGEN, z. B. Cloudflare / GitHub Pages o. Ä.]</span>
-        </p>
+
+        {hostingProvider && (
+          <p class="mt-2 text-sm text-slate-700">
+            <span class="font-medium">Hosting-Anbieter:</span> {hostingProvider}
+          </p>
+        )}
       </section>
 
       <!-- Cookies / Tracking -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">3. Cookies und Tracking</h2>
         <p class="mt-3 text-sm text-slate-700">
-          Wir setzen auf dieser Website keine eigenen Tracking- oder Marketing-Cookies ein. Sofern der Hosting-Anbieter technische Cookies
-          verwendet (z. B. für Sicherheitsfunktionen), erfolgt dies im Rahmen des berechtigten Interesses am sicheren Betrieb.
+          Wir setzen auf dieser Website keine eigenen Tracking- oder Marketing-Cookies ein und verwenden keine Analyse-Tools
+          (z. B. Google Analytics). Sofern der Hosting-Anbieter technisch notwendige Cookies einsetzt (z. B. Sicherheitsfunktionen),
+          erfolgt dies im Rahmen des berechtigten Interesses am sicheren Betrieb.
+        </p>
+        <p class="mt-2 text-sm text-slate-700">
+          Für den Einsatz nicht notwendiger Cookies/Technologien wäre grundsätzlich eine Einwilligung erforderlich (TDDDG, vormals TTDSG). :contentReference[oaicite:2]{index=2}
         </p>
       </section>
 
       <!-- Kontakt -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">4. Kontaktaufnahme</h2>
         <p class="mt-3 text-sm text-slate-700">
-          Wenn Sie uns telefonisch kontaktieren, verarbeiten wir die von Ihnen mitgeteilten Informationen (z. B. Name, Rückrufnummer,
-          Alter des Kindes, gewünschter Betreuungsumfang), um Ihre Anfrage zu bearbeiten.
+          Wenn Sie uns telefonisch kontaktieren, verarbeiten wir die von Ihnen mitgeteilten Informationen
+          (z. B. Name, Rückrufnummer, Alter des Kindes, gewünschter Betreuungsumfang), um Ihre Anfrage zu bearbeiten.
         </p>
         <p class="mt-2 text-sm text-slate-700">
-          <span class="font-medium">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen/Vertrag) oder
-          Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an Kommunikation).
+          <span class="font-medium">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen/Vertrag)
+          oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an Kommunikation).
         </p>
       </section>
 
       <!-- Externe Links -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">5. Externe Links (OpenStreetMap / Google Maps)</h2>
         <p class="mt-3 text-sm text-slate-700">
           Unsere Website enthält Links zu externen Diensten (z. B. OpenStreetMap oder Google Maps), damit Sie den Standort leicht finden.
@@ -87,18 +121,17 @@ import { site } from "../config/site";
       </section>
 
       <!-- Empfänger / Drittland -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">6. Empfänger und Drittlandübermittlung</h2>
         <p class="mt-3 text-sm text-slate-700">
           Eine Weitergabe personenbezogener Daten erfolgt grundsätzlich nur, soweit dies zur Bereitstellung und Sicherheit der Website
-          erforderlich ist (Hosting) oder wenn Sie externe Links nutzen (Drittanbieter).
-          Bei einzelnen Anbietern kann eine Verarbeitung außerhalb der EU/des EWR stattfinden. Bitte beachten Sie dazu die Hinweise
-          des jeweiligen Dienstes.
+          erforderlich ist (Hosting) oder wenn Sie externe Links nutzen (Drittanbieter). Bei einzelnen Anbietern kann eine Verarbeitung
+          außerhalb der EU/des EWR stattfinden. Bitte beachten Sie dazu die Hinweise des jeweiligen Dienstes.
         </p>
       </section>
 
       <!-- Speicherdauer -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">7. Speicherdauer</h2>
         <p class="mt-3 text-sm text-slate-700">
           Server-Logfiles werden vom Hosting-Anbieter in der Regel nur so lange gespeichert, wie dies für Sicherheitszwecke notwendig ist,
@@ -108,7 +141,7 @@ import { site } from "../config/site";
       </section>
 
       <!-- Rechte -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">8. Ihre Rechte</h2>
         <p class="mt-3 text-sm text-slate-700">
           Ihnen stehen nach der DSGVO insbesondere folgende Rechte zu: Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17),
@@ -119,15 +152,26 @@ import { site } from "../config/site";
         </p>
       </section>
 
-      <!-- Stand -->
-      <section class="rounded-3xl border bg-slate-50 p-6 text-sm text-slate-700 border">
+      <!-- Stand / Hinweis -->
+      <section class="rounded-3xl border bg-slate-50 p-7 text-sm text-slate-700">
         <div class="font-semibold">Stand der Datenschutzerklärung</div>
         <p class="mt-2">
-          <span class="font-medium">[BITTE DATUM EINTRAGEN]</span>
+          {lastUpdated ? lastUpdated : "Nicht angegeben"}
         </p>
-        <p class="mt-3 text-slate-600">
-          Hinweis: Diese Vorlage ersetzt keine Rechtsberatung. Für eine rechtssichere Fassung bitte bei Bedarf juristisch prüfen lassen
-          (insbesondere je nach Hosting/Einbindungen/Kommunikationskanälen).
+
+        {missing.length > 0 && (
+          <>
+            <p class="mt-4">
+              Für eine vollständige Angabe sollten folgende Punkte ergänzt werden:
+            </p>
+            <ul class="mt-2 list-disc pl-5 space-y-1">
+              {missing.map((m) => <li>{m}</li>)}
+            </ul>
+          </>
+        )}
+
+        <p class="mt-4 text-slate-600">
+          Hinweis: Diese Vorlage ersetzt keine Rechtsberatung. Für eine rechtssichere Fassung bitte bei Bedarf juristisch prüfen lassen.
         </p>
       </section>
     </div>

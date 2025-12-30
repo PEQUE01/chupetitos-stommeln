@@ -2,94 +2,125 @@
 import Layout from "../layouts/Layout.astro";
 import TopBar from "../components/TopBar.astro";
 import { site } from "../config/site";
+
+const hasEmail = typeof site.email === "string" && site.email.trim().length > 3;
+const hasAuthority =
+  typeof site.legal?.supervisoryAuthority === "string" &&
+  site.legal.supervisoryAuthority.trim().length > 3;
+
+const missing: string[] = [];
+if (!hasEmail) missing.push("E-Mail-Adresse (optional, aber üblich im Impressum)");
+if (!hasAuthority) missing.push("Zuständige Aufsichts-/Erlaubnisbehörde (falls erforderlich)");
 ---
 
-<Layout title={`Impressum · ${site.name}`} description="Impressum und Anbieterkennzeichnung">
+<Layout
+  title={`Impressum · ${site.name}`}
+  description="Anbieterkennzeichnung und Informationspflichten."
+>
   <TopBar />
 
   <main class="mx-auto max-w-5xl px-4 py-12">
     <div class="max-w-2xl">
       <h1 class="text-3xl font-bold tracking-tight">Impressum</h1>
       <p class="mt-3 text-slate-700">
-        Anbieterkennzeichnung gemäß § 5 TMG und Informationspflichten gemäß § 18 Abs. 2 MStV.
+        Anbieterkennzeichnung (u. a. nach § 5 DDG) sowie ggf. Informationspflichten nach § 18 MStV.
       </p>
     </div>
 
     <div class="mt-10 grid gap-6">
       <!-- Anbieter -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">Anbieter</h2>
+
         <div class="mt-4 text-sm text-slate-700 space-y-2">
           <p class="font-semibold">{site.name}</p>
+
           <p>
             {site.person} <span class="text-slate-500">({site.role})</span>
           </p>
+
           <p>
             {site.address1}<br />{site.address2}
           </p>
+
           <p>
-            <span class="text-slate-600">Telefon:</span> {site.phoneDisplay}
+            <span class="text-slate-600">Telefon:</span>{" "}
+            <a class="font-medium hover:underline" href={`tel:${site.phoneRaw}`}>
+              {site.phoneDisplay}
+            </a>
           </p>
-          <p>
-            <span class="text-slate-600">E-Mail:</span>{" "}
-            <span class="font-medium">[BITTE EINTRAGEN]</span>
-          </p>
+
+          {hasEmail && (
+            <p>
+              <span class="text-slate-600">E-Mail:</span>{" "}
+              <a class="font-medium hover:underline" href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+            </p>
+          )}
         </div>
       </section>
 
-      <!-- Aufsicht / Zuständigkeit -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
-        <h2 class="text-lg font-semibold">Zuständige Aufsichtsbehörde (falls erforderlich)</h2>
+      <!-- Verantwortlich -->
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
+        <h2 class="text-lg font-semibold">Inhaltlich verantwortlich</h2>
         <p class="mt-3 text-sm text-slate-700">
-          <span class="font-medium">[BITTE EINTRAGEN]</span> (z. B. Jugendamt / zuständige Stelle für Kindertagespflege)
+          {site.person}, {site.address1}, {site.address2}
         </p>
         <p class="mt-2 text-sm text-slate-600">
-          Hinweis: Ob dieser Abschnitt erforderlich ist, hängt von Ihrer konkreten Konstellation ab (z. B. Erlaubnis,
-          Zuständigkeit, Trägerform). Im Zweifel bitte rechtlich prüfen lassen.
+          Hinweis: Für journalistisch-redaktionelle Angebote wird häufig eine verantwortliche Person nach § 18 Abs. 2 MStV benannt.
+          Bitte prüfen, ob dies im Einzelfall erforderlich ist. :contentReference[oaicite:1]{index=1}
         </p>
       </section>
 
+      <!-- Aufsicht / Zuständigkeit -->
+      {hasAuthority && (
+        <section class="rounded-3xl border bg-white p-7 shadow-sm">
+          <h2 class="text-lg font-semibold">Zuständige Aufsichtsbehörde / Erlaubnisbehörde (falls erforderlich)</h2>
+          <p class="mt-3 text-sm text-slate-700">{site.legal.supervisoryAuthority}</p>
+        </section>
+      )}
+
       <!-- Haftung -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">Haftung für Inhalte</h2>
         <p class="mt-3 text-sm text-slate-700">
-          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen
-          Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte
-          oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
-          Tätigkeit hinweisen.
+          Wir sind als Diensteanbieter für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+          Eine Verpflichtung zur Überwachung übermittelter oder gespeicherter fremder Informationen besteht nicht, soweit keine
+          konkreten Anhaltspunkte für eine rechtswidrige Tätigkeit vorliegen.
         </p>
       </section>
 
       <!-- Links -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">Haftung für Links</h2>
         <p class="mt-3 text-sm text-slate-700">
-          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb
-          können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets
-          der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
+          Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
         </p>
       </section>
 
       <!-- Urheberrecht -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">Urheberrecht</h2>
         <p class="mt-3 text-sm text-slate-700">
-          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
-          Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Vervielfältigung, Bearbeitung, Verbreitung und jede
-          Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen
-          Autors bzw. Erstellers.
+          Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
+          Beiträge Dritter sind als solche gekennzeichnet.
         </p>
       </section>
 
-      <!-- Hinweis -->
-      <section class="rounded-3xl border bg-slate-50 p-6 text-sm text-slate-700 border">
-        <div class="font-semibold">To-do (bitte ergänzen)</div>
-        <ul class="mt-2 list-disc pl-5 space-y-1">
-          <li>E-Mail-Adresse eintragen</li>
-          <li>Aufsichtsbehörde/ zuständige Stelle prüfen und ggf. ergänzen</li>
-          <li>Optional: Verantwortlich i.S.d. § 18 Abs. 2 MStV (Name/Adresse), falls abweichend</li>
-        </ul>
-      </section>
+      <!-- Hinweis / Offene Angaben -->
+      {missing.length > 0 && (
+        <section class="rounded-3xl border bg-slate-50 p-7 text-sm text-slate-700">
+          <div class="font-semibold">Hinweis</div>
+          <p class="mt-2">
+            Für eine vollständige Anbieterkennzeichnung sollten folgende Angaben geprüft bzw. ergänzt werden:
+          </p>
+          <ul class="mt-2 list-disc pl-5 space-y-1">
+            {missing.map((m) => <li>{m}</li>)}
+          </ul>
+        </section>
+      )}
     </div>
   </main>
 </Layout>
