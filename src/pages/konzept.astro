@@ -1,0 +1,196 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import { site } from "../config/site";
+---
+
+<Layout title={`Konzept · ${site.name}`} description="Pädagogisches Konzept, Tagesablauf und Eingewöhnung.">
+  <TopBar />
+
+  <main class="mx-auto max-w-5xl px-4 py-12">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl font-bold tracking-tight">Konzept</h1>
+      <p class="mt-3 text-slate-700">
+        Eine kurze und transparente Übersicht über unsere Kindertagespflege im Alltag: liebevoll, strukturiert und
+        kindgerecht – mit deutsch–spanischen Impulsen.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6">
+      <!-- Schwerpunkte -->
+      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+        <h2 class="text-xl font-semibold">Schwerpunkte</h2>
+        <ul class="mt-4 grid gap-3 text-slate-700">
+          <li class="rounded-2xl bg-slate-50 border p-4">
+            <div class="font-medium">Familiäre Betreuung in Kleingruppe</div>
+            <div class="mt-1 text-sm text-slate-600">
+              Verlässliche Bezugsperson, stabile Abläufe und individuelle Zuwendung.
+            </div>
+          </li>
+          <li class="rounded-2xl bg-slate-50 border p-4">
+            <div class="font-medium">Rituale, Struktur und Orientierung</div>
+            <div class="mt-1 text-sm text-slate-600">
+              Wiederkehrende Rituale geben Sicherheit und fördern Selbstständigkeit.
+            </div>
+          </li>
+          <li class="rounded-2xl bg-slate-50 border p-4">
+            <div class="font-medium">Spiel, Bewegung, Kreativität</div>
+            <div class="mt-1 text-sm text-slate-600">
+              Altersgerechte Angebote – drinnen und draußen – mit viel Raum für freies Spiel.
+            </div>
+          </li>
+          <li class="rounded-2xl bg-slate-50 border p-4">
+            <div class="font-medium">Bilingual im Alltag (Deutsch & Spanisch)</div>
+            <div class="mt-1 text-sm text-slate-600">
+              Spielerische Sprachimpulse durch Lieder, Reime, Bilderbücher und Alltagssituationen.
+            </div>
+          </li>
+          <li class="rounded-2xl bg-slate-50 border p-4">
+            <div class="font-medium">Partnerschaft mit Eltern</div>
+            <div class="mt-1 text-sm text-slate-600">
+              Wertschätzende Kommunikation, kurze Übergaben und klare Absprachen.
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Tagesablauf -->
+      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-semibold">Tagesablauf (Beispiel)</h2>
+            <p class="mt-2 text-sm text-slate-600">
+              Der Tagesablauf kann je nach Gruppe, Wetter und Bedürfnissen variieren.
+            </p>
+          </div>
+          <div class="text-sm text-slate-600">
+            Öffnungszeiten: <span class="font-medium text-slate-900">{site.hours}</span>
+          </div>
+        </div>
+
+        <div class="mt-5 grid gap-3 text-slate-700 text-sm">
+          <div class="rounded-2xl bg-slate-50 border p-4">
+            <span class="font-medium">07:45–09:00</span> · Ankommen, Begrüßung, Freispiel
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-4">
+            <span class="font-medium">09:00–10:00</span> · Frühstück, Morgenkreis (Lieder/Reime)
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-4">
+            <span class="font-medium">10:00–12:00</span> · Draußenzeit / Ausflüge / Aktivitäten
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-4">
+            <span class="font-medium">12:00–14:00</span> · Mittagessen, Ruhezeit / Schlafenszeit
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-4">
+            <span class="font-medium">14:00–15:45</span> · Freispiel, kleine Angebote, Abholung
+          </div>
+        </div>
+      </section>
+
+      <!-- Eingewöhnung -->
+      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+        <h2 class="text-xl font-semibold">Eingewöhnung</h2>
+        <p class="mt-3 text-slate-700">
+          Die Eingewöhnung erfolgt schrittweise und individuell – in enger Abstimmung mit den Eltern. Ziel ist eine
+          sichere Bindung und ein guter Start für Ihr Kind.
+        </p>
+
+        <div class="mt-5 grid gap-3 md:grid-cols-3 text-sm text-slate-700">
+          <div class="rounded-2xl bg-slate-50 border p-4">
+            <div class="font-medium">Kennenlernen</div>
+            <div class="mt-1 text-slate-600">Erste kurze Zeiten gemeinsam, Orientierung in der neuen Umgebung.</div>
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-4">
+            <div class="font-medium">Behutsame Trennung</div>
+            <div class="mt-1 text-slate-600">Trennungsphasen werden langsam aufgebaut und beobachtet.</div>
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-4">
+            <div class="font-medium">Stabilisierung</div>
+            <div class="mt-1 text-slate-600">Zeiten werden erweitert, bis Ihr Kind sicher angekommen ist.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pädagogischer Rahmen -->
+      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+        <h2 class="text-xl font-semibold">Pädagogischer Rahmen</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl bg-slate-50 border p-5">
+            <div class="font-medium">Wertschätzung & Grenzen</div>
+            <p class="mt-2 text-sm text-slate-600">
+              Wir begleiten Kinder mit Respekt, klaren Regeln und altersgerechter Unterstützung.
+            </p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-5">
+            <div class="font-medium">Selbstständigkeit</div>
+            <p class="mt-2 text-sm text-slate-600">
+              Anziehen, Händewaschen, Aufräumen: kleine Schritte stärken das Vertrauen in die eigenen Fähigkeiten.
+            </p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-5">
+            <div class="font-medium">Sprache & Bilingualität</div>
+            <p class="mt-2 text-sm text-slate-600">
+              Deutsch ist im Alltag präsent; spanische Impulse fließen spielerisch ein (Lieder, Reime, Begriffe).
+            </p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-5">
+            <div class="font-medium">Natur & Bewegung</div>
+            <p class="mt-2 text-sm text-slate-600">
+              Regelmäßige Draußenzeit unterstützt Motorik, Gesundheit und Entdeckerfreude.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ernährung / Kommunikation / Privatsphäre -->
+      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+        <h2 class="text-xl font-semibold">Organisation & Transparenz</h2>
+
+        <div class="mt-5 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl bg-slate-50 border p-5">
+            <div class="font-medium">Ernährung</div>
+            <p class="mt-2 text-sm text-slate-600">
+              Altersgerechte Mahlzeiten und Trinkpausen. Allergien/Unverträglichkeiten besprechen wir individuell.
+            </p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-5">
+            <div class="font-medium">Elternkommunikation</div>
+            <p class="mt-2 text-sm text-slate-600">
+              Kurze Übergaben, Absprachen und Hinweise zum Tagesverlauf – klar und zuverlässig.
+            </p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 border p-5">
+            <div class="font-medium">Privatsphäre</div>
+            <p class="mt-2 text-sm text-slate-600">
+              Fotos veröffentlichen wir nur ohne erkennbare Kinder bzw. ausschließlich nach Einwilligung.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="rounded-3xl border bg-white p-6 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <div class="font-semibold">Fragen zum Konzept?</div>
+          <div class="text-sm text-slate-700">
+            Telefon: <span class="font-medium">{site.phoneDisplay}</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a
+            class="rounded-xl bg-slate-900 text-white px-5 py-3 text-sm font-medium hover:bg-slate-800"
+            href={`tel:${site.phoneRaw}`}
+          >
+            Jetzt anrufen
+          </a>
+          <a
+            class="rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
+            href="/faq"
+          >
+            FAQ ansehen
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>

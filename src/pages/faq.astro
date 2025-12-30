@@ -1,0 +1,146 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import { site } from "../config/site";
+---
+
+<Layout title={`FAQ · ${site.name}`} description="Häufige Fragen zur Kindertagespflege.">
+  <TopBar />
+
+  <main class="mx-auto max-w-5xl px-4 py-12">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl font-bold tracking-tight">FAQ</h1>
+      <p class="mt-3 text-slate-700">
+        Die häufigsten Fragen – kurz und transparent beantwortet. Wenn etwas offen bleibt, rufen Sie gerne an.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-4">
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Wie läuft die Eingewöhnung ab?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">
+          Schrittweise, individuell und in enger Abstimmung mit den Eltern. Die Dauer richtet sich nach dem Kind.
+          Ziel ist, dass Ihr Kind sich sicher fühlt und Vertrauen aufbauen kann.
+        </p>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Welche Öffnungszeiten gelten?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">{site.hours}</p>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Wie kann ich anfragen?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">
+          Am schnellsten telefonisch:
+          <a class="font-medium hover:underline" href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a>.
+          Bitte nennen Sie kurz Alter des Kindes und ein mögliches Startdatum.
+        </p>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Welche Informationen sind für das Erstgespräch hilfreich?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <ul class="mt-3 text-slate-700 text-sm list-disc pl-5 space-y-1">
+          <li>Alter des Kindes</li>
+          <li>Gewünschtes Startdatum</li>
+          <li>Betreuungsumfang (Tage/Zeiten)</li>
+          <li>Besondere Bedürfnisse (z. B. Allergien)</li>
+        </ul>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Gibt es feste Bring- und Abholzeiten?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">
+          Ja – verlässliche Zeiten sind für Kinder wichtig. Die genauen Bring-/Abholfenster stimmen wir im Rahmen
+          des Betreuungsvertrags ab.
+        </p>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Was ist bei Krankheit?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">
+          Bei ansteckenden Erkrankungen oder Fieber bitten wir um Rücksprache und ggf. Betreuungspause,
+          damit sich Ihr Kind erholen kann und andere Kinder geschützt werden.
+        </p>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Essen & Getränke: Wie ist das geregelt?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">
+          Altersgerechte Mahlzeiten und Trinkpausen. Allergien/Unverträglichkeiten besprechen wir individuell.
+        </p>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Was sollte mein Kind mitbringen?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">
+          Wechselkleidung, ggf. Hausschuhe sowie persönliche Dinge nach Absprache (z. B. Schnuller/Schlafhilfe).
+        </p>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Wie funktioniert Bilingualität (Deutsch/Spanisch) im Alltag?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">
+          Deutsch ist im Alltag präsent; spanische Impulse fließen spielerisch ein (Lieder, Reime, Begriffe).
+          Immer altersgerecht und ohne Druck.
+        </p>
+      </details>
+
+      <details class="group rounded-3xl border bg-white p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+          Datenschutz & Fotos: Werden Bilder veröffentlicht?
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">⌄</span>
+        </summary>
+        <p class="mt-3 text-slate-700 text-sm">
+          Wir achten sehr auf Privatsphäre. Fotos werden nur ohne erkennbare Kinder bzw. ausschließlich nach
+          ausdrücklicher Einwilligung verwendet. Details finden Sie unter Datenschutz.
+        </p>
+      </details>
+    </div>
+
+    <section class="mt-10 rounded-3xl border bg-white p-6 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <div class="font-semibold">Noch Fragen?</div>
+        <div class="text-sm text-slate-700">
+          Telefonisch geht es am schnellsten:
+          <a class="font-medium hover:underline" href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a class="rounded-xl bg-slate-900 text-white px-5 py-3 text-sm font-medium hover:bg-slate-800" href={`tel:${site.phoneRaw}`}>
+          Jetzt anrufen
+        </a>
+        <a class="rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50" href="/kontakt">
+          Kontaktseite öffnen
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

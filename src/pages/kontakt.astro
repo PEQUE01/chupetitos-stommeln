@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import { site } from "../config/site";
+
+const addressQuery = encodeURIComponent(`${site.address1} ${site.address2}`);
+const osmUrl = `https://www.openstreetmap.org/search?query=${addressQuery}`;
+const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${addressQuery}`;
+---
+
+<Layout title={`Kontakt · ${site.name}`} description="Kontakt, Adresse und Öffnungszeiten.">
+  <TopBar />
+
+  <main class="mx-auto max-w-5xl px-4 py-12">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl font-bold tracking-tight">Kontakt</h1>
+      <p class="mt-3 text-slate-700">
+        Am schnellsten erreichen Sie uns telefonisch. Wir freuen uns auf Ihren Anruf.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <!-- Contact card -->
+      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+        <div class="grid gap-5">
+          <div>
+            <div class="text-sm text-slate-600">Telefon</div>
+            <a class="mt-1 block text-2xl font-semibold hover:underline" href={`tel:${site.phoneRaw}`}>
+              {site.phoneDisplay}
+            </a>
+            <p class="mt-2 text-sm text-slate-600">
+              Tipp: Wenn möglich bitte kurz Alter des Kindes und gewünschtes Startdatum nennen.
+            </p>
+          </div>
+
+          <div class="h-px bg-slate-100"></div>
+
+          <div>
+            <div class="text-sm text-slate-600">Adresse</div>
+            <div class="mt-1 font-medium">{site.address1}</div>
+            <div class="text-slate-700">{site.address2}</div>
+          </div>
+
+          <div>
+            <div class="text-sm text-slate-600">Öffnungszeiten</div>
+            <div class="mt-1 font-medium">{site.hours}</div>
+          </div>
+
+          <div class="mt-1 flex flex-wrap gap-3">
+            <a
+              class="rounded-xl bg-slate-900 text-white px-5 py-3 text-sm font-medium hover:bg-slate-800"
+              href={`tel:${site.phoneRaw}`}
+            >
+              Jetzt anrufen
+            </a>
+            <a
+              class="rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Route öffnen
+            </a>
+          </div>
+
+          <a class="text-sm text-slate-600 hover:underline" href="/">
+            Zur Startseite
+          </a>
+        </div>
+      </section>
+
+      <!-- Map card -->
+      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+        <div class="text-sm text-slate-600">Standort</div>
+        <p class="mt-2 text-sm text-slate-700">
+          Wir verlinken bewusst auf externe Karten (ohne eingebettete Inhalte), um Cookies zu vermeiden.
+        </p>
+
+        <div class="mt-5 flex flex-col gap-3">
+          <a
+            class="inline-flex justify-center rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
+            href={osmUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            In OpenStreetMap öffnen
+          </a>
+
+          <a
+            class="inline-flex justify-center rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
+            href={googleMapsUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            In Google Maps öffnen
+          </a>
+        </div>
+
+        <div class="mt-8 rounded-2xl bg-slate-50 p-4 text-sm text-slate-700 border">
+          <div class="font-semibold">Für das Telefonat hilfreich</div>
+          <ul class="mt-2 list-disc pl-5 space-y-1 text-slate-700">
+            <li>Alter des Kindes</li>
+            <li>Gewünschtes Startdatum</li>
+            <li>Betreuungsumfang (Tage/Zeiten)</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>

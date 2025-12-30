@@ -1,0 +1,157 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import { site } from "../config/site";
+---
+
+<Layout
+  title={`${site.name} · Kindertagespflege in Pulheim-Stommeln`}
+  description="Liebevolle deutsch–spanische Kindertagespflege in Pulheim-Stommeln. Konzept, FAQ und Kontakt."
+>
+  <TopBar />
+
+  <main class="mx-auto max-w-5xl px-4">
+    <!-- HERO -->
+    <section class="py-12 grid gap-8 md:grid-cols-2 items-center">
+      <!-- Left -->
+      <div class="space-y-5">
+        <p class="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1 text-sm">
+          <span class="font-medium">{site.tagline}</span>
+          <span class="text-slate-500">· Pulheim (Stommeln)</span>
+        </p>
+
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+          {site.name}
+        </h1>
+
+        <p class="text-lg text-slate-700">
+          {site.role} <span class="font-medium text-slate-900">{site.person}</span>
+          <span class="text-slate-400">·</span> {site.hours}
+        </p>
+
+        <p class="text-xl font-semibold text-red-600">
+          {site.claim} ♥
+        </p>
+
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a
+            class="rounded-xl bg-slate-900 text-white px-5 py-3 text-sm font-medium hover:bg-slate-800"
+            href={`tel:${site.phoneRaw}`}
+          >
+            Jetzt anrufen
+          </a>
+          <a
+            class="rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
+            href="/kontakt"
+          >
+            Kontakt & Standort
+          </a>
+        </div>
+
+        <div class="pt-4 grid gap-2 text-sm text-slate-700">
+          <div class="rounded-2xl bg-white/70 border px-4 py-3">
+            <span class="text-slate-600">Adresse: </span>
+            <span class="font-medium">{site.address1}</span>, {site.address2}
+          </div>
+          <div class="rounded-2xl bg-white/70 border px-4 py-3">
+            <span class="text-slate-600">Telefon: </span>
+            <a class="font-medium hover:underline" href={`tel:${site.phoneRaw}`}>
+              {site.phoneDisplay}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="rounded-3xl border bg-white p-4 shadow-sm">
+        <div class="rounded-2xl bg-slate-50 p-6 border">
+          <img
+            src="/images/logo.png"
+            alt="Chupetitos Stommeln"
+            class="w-full max-w-md mx-auto h-auto rounded-xl"
+            loading="lazy"
+          />
+          <p class="mt-3 text-sm text-slate-600">
+            Tipp: Gute Fotos (Räume/Materialien) erhöhen Vertrauen – ohne erkennbare Kinder.
+          </p>
+        </div>
+
+        <div class="mt-4 grid gap-3">
+          <div class="rounded-2xl bg-slate-50 p-4 border">
+            <div class="text-sm text-slate-600">Öffnungszeiten</div>
+            <div class="mt-1 font-medium">{site.hours}</div>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-4 border">
+            <div class="text-sm text-slate-600">Schneller Kontakt</div>
+            <a class="mt-1 inline-block font-medium hover:underline" href={`tel:${site.phoneRaw}`}>
+              {site.phoneDisplay}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE PROPS -->
+    <section class="grid gap-4 md:grid-cols-3">
+      <div class="rounded-3xl border bg-white p-6 shadow-sm">
+        <h2 class="text-base font-semibold">Familiäre Atmosphäre</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Kleine Gruppe, klare Routinen und individuelle Zuwendung.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border bg-white p-6 shadow-sm">
+        <h2 class="text-base font-semibold">Bilingual im Alltag</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Deutsch & Spanisch spielerisch in Alltagssituationen und Aktivitäten.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border bg-white p-6 shadow-sm">
+        <h2 class="text-base font-semibold">Transparenz</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Konzept, Eingewöhnung und Kommunikation klar und nachvollziehbar.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12">
+      <div class="rounded-3xl border bg-white p-8 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <h2 class="text-2xl font-bold tracking-tight">Interesse?</h2>
+            <p class="mt-3 text-slate-700">
+              Am schnellsten telefonisch. Bitte nennen Sie Alter des Kindes und gewünschtes Startdatum.
+            </p>
+            <p class="mt-2 text-sm text-slate-600">
+              Telefon: <a class="font-medium hover:underline" href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a>
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a
+              class="rounded-xl bg-slate-900 text-white px-5 py-3 text-sm font-medium hover:bg-slate-800"
+              href={`tel:${site.phoneRaw}`}
+            >
+              Jetzt anrufen
+            </a>
+            <a
+              class="rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
+              href="/konzept"
+            >
+              Konzept ansehen
+            </a>
+            <a
+              class="rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
+              href="/faq"
+            >
+              FAQ lesen
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
