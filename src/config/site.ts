@@ -8,15 +8,9 @@ export const site = {
   person: "Carlos Cortés",
   role: "Kindertagespflegeperson (Tagespapa)",
 
-  // Contact
+  // Contact (PHONE ONLY)
   phoneRaw: "015731877629",
   phoneDisplay: "01573 1877629",
-
-  /**
-   * Email es opcional.
-   * - Si no quieres mostrar email todavía, deja "" (vacío).
-   * - Si lo tienes, ponlo aquí: "correo@dominio.de"
-   */
   email: "",
 
   // Address
@@ -28,9 +22,9 @@ export const site = {
 
   // Optional helpers (Kontakt/Datenschutz)
   legal: {
-    privacyLastUpdated: "",
-    supervisoryAuthority: "",
-    hostingProvider: "",
+    privacyLastUpdated: "",  // ej: "30.12.2025"
+    supervisoryAuthority: "", // si aplica (Jugendamt etc.)
+    hostingProvider: "",      // ej: "Cloudflare Pages"
   },
 } as const;
 

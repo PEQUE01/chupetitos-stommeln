@@ -3,8 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import TopBar from "../components/TopBar.astro";
 import { site } from "../config/site";
 
-const hasEmail = typeof site.email === "string" && site.email.trim().length > 3;
-
 const hostingProvider =
   typeof site.legal?.hostingProvider === "string" ? site.legal.hostingProvider.trim() : "";
 
@@ -12,7 +10,6 @@ const lastUpdated =
   typeof site.legal?.privacyLastUpdated === "string" ? site.legal.privacyLastUpdated.trim() : "";
 
 const missing: string[] = [];
-if (!hasEmail) missing.push("E-Mail-Adresse (optional, aber empfohlen)");
 if (!hostingProvider) missing.push("Hosting-Anbieter (z. B. Cloudflare Pages)");
 if (!lastUpdated) missing.push("Stand der Datenschutzerklärung (Datum)");
 ---
@@ -46,14 +43,6 @@ if (!lastUpdated) missing.push("Stand der Datenschutzerklärung (Datum)");
               {site.phoneDisplay}
             </a>
           </div>
-          {hasEmail && (
-            <div>
-              E-Mail:{" "}
-              <a class="font-medium hover:underline" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-            </div>
-          )}
         </div>
       </section>
 
@@ -71,6 +60,7 @@ if (!lastUpdated) missing.push("Stand der Datenschutzerklärung (Datum)");
         <p class="mt-3 text-sm text-slate-700">
           <span class="font-medium">Zweck:</span> Stabilität und Sicherheit der Website, Missbrauchserkennung, Fehleranalyse.
         </p>
+
         <p class="mt-2 text-sm text-slate-700">
           <span class="font-medium">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
         </p>
@@ -86,12 +76,9 @@ if (!lastUpdated) missing.push("Stand der Datenschutzerklärung (Datum)");
       <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">3. Cookies und Tracking</h2>
         <p class="mt-3 text-sm text-slate-700">
-          Wir setzen auf dieser Website keine eigenen Tracking- oder Marketing-Cookies ein und verwenden keine Analyse-Tools
-          (z. B. Google Analytics). Sofern der Hosting-Anbieter technisch notwendige Cookies einsetzt (z. B. Sicherheitsfunktionen),
-          erfolgt dies im Rahmen des berechtigten Interesses am sicheren Betrieb.
-        </p>
-        <p class="mt-2 text-sm text-slate-700">
-          Für den Einsatz nicht notwendiger Cookies/Technologien wäre grundsätzlich eine Einwilligung erforderlich (TDDDG, vormals TTDSG). :contentReference[oaicite:2]{index=2}
+          Wir setzen auf dieser Website keine eigenen Tracking- oder Marketing-Cookies ein und verwenden keine Analyse-Tools.
+          Sofern der Hosting-Anbieter technisch notwendige Cookies einsetzt (z. B. Sicherheitsfunktionen), erfolgt dies im Rahmen
+          des berechtigten Interesses am sicheren Betrieb.
         </p>
       </section>
 
@@ -116,7 +103,7 @@ if (!lastUpdated) missing.push("Stand der Datenschutzerklärung (Datum)");
           Beim Anklicken eines solchen Links verlassen Sie unsere Website. Es gelten dann die Datenschutzbestimmungen des jeweiligen Anbieters.
         </p>
         <p class="mt-2 text-sm text-slate-700">
-          Hinweis: Wir binden Karten bewusst nicht direkt ein, um unnötige Datenübermittlungen/Cookies beim bloßen Seitenaufruf zu vermeiden.
+          Hinweis: Wir binden Karten bewusst nicht direkt ein, um unnötige Datenübermittlungen beim bloßen Seitenaufruf zu vermeiden.
         </p>
       </section>
 
@@ -155,9 +142,7 @@ if (!lastUpdated) missing.push("Stand der Datenschutzerklärung (Datum)");
       <!-- Stand / Hinweis -->
       <section class="rounded-3xl border bg-slate-50 p-7 text-sm text-slate-700">
         <div class="font-semibold">Stand der Datenschutzerklärung</div>
-        <p class="mt-2">
-          {lastUpdated ? lastUpdated : "Nicht angegeben"}
-        </p>
+        <p class="mt-2">{lastUpdated ? lastUpdated : "Nicht angegeben"}</p>
 
         {missing.length > 0 && (
           <>

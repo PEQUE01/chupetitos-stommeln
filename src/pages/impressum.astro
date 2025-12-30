@@ -3,14 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import TopBar from "../components/TopBar.astro";
 import { site } from "../config/site";
 
-const hasEmail = typeof site.email === "string" && site.email.trim().length > 3;
 const hasAuthority =
   typeof site.legal?.supervisoryAuthority === "string" &&
   site.legal.supervisoryAuthority.trim().length > 3;
-
-const missing: string[] = [];
-if (!hasEmail) missing.push("E-Mail-Adresse (optional, aber üblich im Impressum)");
-if (!hasAuthority) missing.push("Zuständige Aufsichts-/Erlaubnisbehörde (falls erforderlich)");
 ---
 
 <Layout
@@ -23,7 +18,7 @@ if (!hasAuthority) missing.push("Zuständige Aufsichts-/Erlaubnisbehörde (falls
     <div class="max-w-2xl">
       <h1 class="text-3xl font-bold tracking-tight">Impressum</h1>
       <p class="mt-3 text-slate-700">
-        Anbieterkennzeichnung (u. a. nach § 5 DDG) sowie ggf. Informationspflichten nach § 18 MStV.
+        Anbieterkennzeichnung sowie ggf. Informationspflichten nach § 18 MStV.
       </p>
     </div>
 
@@ -49,15 +44,6 @@ if (!hasAuthority) missing.push("Zuständige Aufsichts-/Erlaubnisbehörde (falls
               {site.phoneDisplay}
             </a>
           </p>
-
-          {hasEmail && (
-            <p>
-              <span class="text-slate-600">E-Mail:</span>{" "}
-              <a class="font-medium hover:underline" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-            </p>
-          )}
         </div>
       </section>
 
@@ -67,16 +53,14 @@ if (!hasAuthority) missing.push("Zuständige Aufsichts-/Erlaubnisbehörde (falls
         <p class="mt-3 text-sm text-slate-700">
           {site.person}, {site.address1}, {site.address2}
         </p>
-        <p class="mt-2 text-sm text-slate-600">
-          Hinweis: Für journalistisch-redaktionelle Angebote wird häufig eine verantwortliche Person nach § 18 Abs. 2 MStV benannt.
-          Bitte prüfen, ob dies im Einzelfall erforderlich ist. :contentReference[oaicite:1]{index=1}
-        </p>
       </section>
 
       <!-- Aufsicht / Zuständigkeit -->
       {hasAuthority && (
         <section class="rounded-3xl border bg-white p-7 shadow-sm">
-          <h2 class="text-lg font-semibold">Zuständige Aufsichtsbehörde / Erlaubnisbehörde (falls erforderlich)</h2>
+          <h2 class="text-lg font-semibold">
+            Zuständige Aufsichtsbehörde / Erlaubnisbehörde (falls erforderlich)
+          </h2>
           <p class="mt-3 text-sm text-slate-700">{site.legal.supervisoryAuthority}</p>
         </section>
       )}
@@ -85,9 +69,9 @@ if (!hasAuthority) missing.push("Zuständige Aufsichts-/Erlaubnisbehörde (falls
       <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <h2 class="text-lg font-semibold">Haftung für Inhalte</h2>
         <p class="mt-3 text-sm text-slate-700">
-          Wir sind als Diensteanbieter für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
-          Eine Verpflichtung zur Überwachung übermittelter oder gespeicherter fremder Informationen besteht nicht, soweit keine
-          konkreten Anhaltspunkte für eine rechtswidrige Tätigkeit vorliegen.
+          Wir sind für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+          Eine Verpflichtung zur Überwachung übermittelter oder gespeicherter fremder Informationen besteht nicht,
+          soweit keine konkreten Anhaltspunkte für eine rechtswidrige Tätigkeit vorliegen.
         </p>
       </section>
 
@@ -108,19 +92,6 @@ if (!hasAuthority) missing.push("Zuständige Aufsichts-/Erlaubnisbehörde (falls
           Beiträge Dritter sind als solche gekennzeichnet.
         </p>
       </section>
-
-      <!-- Hinweis / Offene Angaben -->
-      {missing.length > 0 && (
-        <section class="rounded-3xl border bg-slate-50 p-7 text-sm text-slate-700">
-          <div class="font-semibold">Hinweis</div>
-          <p class="mt-2">
-            Für eine vollständige Anbieterkennzeichnung sollten folgende Angaben geprüft bzw. ergänzt werden:
-          </p>
-          <ul class="mt-2 list-disc pl-5 space-y-1">
-            {missing.map((m) => <li>{m}</li>)}
-          </ul>
-        </section>
-      )}
     </div>
   </main>
 </Layout>
