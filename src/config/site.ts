@@ -11,7 +11,13 @@ export const site = {
   // Contact
   phoneRaw: "015731877629",
   phoneDisplay: "01573 1877629",
-  email: "[BITTE EINTRAGEN]",
+
+  /**
+   * Email es opcional.
+   * - Si no quieres mostrar email todavía, deja "" (vacío).
+   * - Si lo tienes, ponlo aquí: "correo@dominio.de"
+   */
+  email: "",
 
   // Address
   address1: "Am Holländer 22",
@@ -20,10 +26,12 @@ export const site = {
   // Hours
   hours: "Montag–Freitag · 07:45–15:45 Uhr",
 
-  // Optional helpers (für Kontakt/Maps/Datenschutz)
+  // Optional helpers (Kontakt/Datenschutz)
   legal: {
-    privacyLastUpdated: "[BITTE DATUM EINTRAGEN]",
-    supervisoryAuthority: "[BITTE EINTRAGEN, falls erforderlich]",
-    hostingProvider: "[BITTE EINTRAGEN]",
+    privacyLastUpdated: "",
+    supervisoryAuthority: "",
+    hostingProvider: "",
   },
-};
+} as const;
+
+export type SiteConfig = typeof site;

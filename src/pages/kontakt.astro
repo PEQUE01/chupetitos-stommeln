@@ -6,6 +6,8 @@ import { site } from "../config/site";
 const addressQuery = encodeURIComponent(`${site.address1} ${site.address2}`);
 const osmUrl = `https://www.openstreetmap.org/search?query=${addressQuery}`;
 const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${addressQuery}`;
+
+const hasEmail = typeof site.email === "string" && site.email.trim().length > 3;
 ---
 
 <Layout title={`Kontakt · ${site.name}`} description="Kontakt, Adresse und Öffnungszeiten.">
@@ -15,23 +17,40 @@ const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${address
     <div class="max-w-2xl">
       <h1 class="text-3xl font-bold tracking-tight">Kontakt</h1>
       <p class="mt-3 text-slate-700">
-        Am schnellsten erreichen Sie uns telefonisch. Wir freuen uns auf Ihren Anruf.
+        Am schnellsten erreichen Sie uns telefonisch. Für eine schnelle Einschätzung nennen Sie bitte:
+        <span class="font-medium">Alter des Kindes</span> und <span class="font-medium">gewünschtes Startdatum</span>.
       </p>
     </div>
 
     <div class="mt-10 grid gap-6 md:grid-cols-2">
       <!-- Contact card -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
-        <div class="grid gap-5">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
+        <div class="grid gap-6">
           <div>
             <div class="text-sm text-slate-600">Telefon</div>
             <a class="mt-1 block text-2xl font-semibold hover:underline" href={`tel:${site.phoneRaw}`}>
               {site.phoneDisplay}
             </a>
             <p class="mt-2 text-sm text-slate-600">
-              Tipp: Wenn möglich bitte kurz Alter des Kindes und gewünschtes Startdatum nennen.
+              Kurzer Hinweis: Bitte nennen Sie Alter des Kindes, Startdatum und Betreuungsumfang (Tage/Zeiten).
             </p>
           </div>
+
+          {hasEmail && (
+            <>
+              <div class="h-px bg-slate-100"></div>
+
+              <div>
+                <div class="text-sm text-slate-600">E-Mail</div>
+                <a class="mt-1 inline-block font-medium hover:underline" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+                <p class="mt-2 text-sm text-slate-600">
+                  Wenn telefonisch nicht erreichbar, schreiben Sie uns gerne eine kurze Nachricht.
+                </p>
+              </div>
+            </>
+          )}
 
           <div class="h-px bg-slate-100"></div>
 
@@ -53,6 +72,16 @@ const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${address
             >
               Jetzt anrufen
             </a>
+
+            {hasEmail && (
+              <a
+                class="rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
+                href={`mailto:${site.email}`}
+              >
+                E-Mail senden
+              </a>
+            )}
+
             <a
               class="rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
               href={googleMapsUrl}
@@ -70,13 +99,15 @@ const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${address
       </section>
 
       <!-- Map card -->
-      <section class="rounded-3xl border bg-white p-6 shadow-sm">
+      <section class="rounded-3xl border bg-white p-7 shadow-sm">
         <div class="text-sm text-slate-600">Standort</div>
-        <p class="mt-2 text-sm text-slate-700">
+        <h2 class="mt-2 text-xl font-semibold tracking-tight">Karte öffnen</h2>
+
+        <p class="mt-3 text-sm text-slate-700">
           Wir verlinken bewusst auf externe Karten (ohne eingebettete Inhalte), um Cookies zu vermeiden.
         </p>
 
-        <div class="mt-5 flex flex-col gap-3">
+        <div class="mt-6 flex flex-col gap-3">
           <a
             class="inline-flex justify-center rounded-xl border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-50"
             href={osmUrl}
