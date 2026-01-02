@@ -11,68 +11,68 @@ import { site } from "../config/site";
   <TopBar />
 
   <main class="mx-auto max-w-5xl px-4">
-    <!-- HERO tipo folleto (ilustración integrada) -->
-    <section class="pt-10 pb-10">
-      <div class="kid-hero">
-        <div class="kid-hero-bg" aria-hidden="true"></div>
-        <div class="kid-hero-scrim" aria-hidden="true"></div>
+    <!-- HERO (folleto / acuarela) -->
+<section class="pt-10 pb-10">
+  <div class="kid-hero">
+    <div class="kid-hero-bg" aria-hidden="true"></div>
+    <div class="kid-hero-scrim" aria-hidden="true"></div>
 
-        <div class="kid-hero-inner">
-          <div class="kid-hero-grid">
-            <!-- Copy box -->
-            <div class="kid-hero-copy">
-              <p class="inline-flex flex-wrap items-center gap-2 rounded-full border bg-white/70 px-3 py-1 text-sm">
-                <span class="font-extrabold kid-title">{site.tagline}</span>
-                <span class="text-slate-600">· Pulheim (Stommeln)</span>
-              </p>
+    <div class="kid-hero-inner">
+      <div class="kid-hero-grid">
+        <div class="kid-hero-copy space-y-5">
+          <p class="inline-flex flex-wrap items-center gap-2 rounded-full border bg-white/70 px-3 py-1 text-sm">
+            <span class="font-extrabold kid-title">{site.tagline}</span>
+            <span class="text-slate-500">· Pulheim (Stommeln)</span>
+          </p>
 
-              <h1 class="mt-4 text-4xl md:text-5xl font-extrabold leading-tight kid-title">
-                <span style="color:var(--kid-red)">Liebevolle Betreuung</span><br />
-                <span style="color:var(--kid-blue)">in Deutsch &amp; Spanisch</span>
-              </h1>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight kid-title">
+            <span style="color:var(--kid-red)">Liebevolle Betreuung</span><br />
+            <span style="color:var(--kid-blue)">in Deutsch &amp; Spanisch</span>
+          </h1>
 
-              <p class="mt-4 text-base md:text-lg text-slate-700 max-w-xl">
-                Willkommen bei {site.name}! Familiäre Kindertagespflege mit klaren Routinen, liebevoller Begleitung und transparenter Kommunikation.
-              </p>
+          <p class="text-base md:text-lg text-slate-700 max-w-xl">
+            Willkommen bei {site.name}! Familiäre Kindertagespflege mit klaren Routinen,
+            liebevoller Begleitung und transparenter Kommunikation.
+          </p>
 
-              <p class="mt-4 text-sm md:text-base text-slate-700">
-                {site.role} <span class="font-semibold">{site.person}</span>
-                <span class="text-slate-400">·</span> {site.hours}
-              </p>
+          <p class="text-sm md:text-base text-slate-700">
+            {site.role} <span class="font-semibold">{site.person}</span>
+            <span class="text-slate-400">·</span> {site.hours}
+          </p>
 
-              <div class="mt-6 flex flex-wrap gap-3">
-                <a class="kid-btn kid-btn-primary" href={`tel:${site.phoneRaw}`}>Jetzt Kontakt aufnehmen</a>
-                <a class="kid-btn kid-btn-ghost" href="#kontakt">Kontakt (schnell)</a>
-              </div>
+          <div class="flex flex-wrap gap-3 pt-1">
+            <a class="kid-btn kid-btn-primary" href={`tel:${site.phoneRaw}`}>Jetzt Kontakt aufnehmen</a>
+            <a class="kid-btn kid-btn-ghost" href="#kontakt">Kontakt (schnell)</a>
+          </div>
 
-              <div class="mt-5 flex flex-wrap gap-2">
-                <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Kleine Gruppe</span>
-                <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Struktur &amp; Rituale</span>
-                <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Deutsch &amp; Spanisch</span>
-                <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Elternkommunikation</span>
-              </div>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Kleine Gruppe</span>
+            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Struktur & Rituale</span>
+            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Deutsch &amp; Spanisch</span>
+            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Elternkommunikation</span>
+          </div>
 
-              <div class="mt-6 grid gap-2 text-sm text-slate-700">
-                <div class="rounded-2xl bg-white/70 border px-4 py-3">
-                  <span class="text-slate-600">Adresse: </span>
-                  <span class="font-bold">{site.address1}</span>, {site.address2}
-                </div>
-                <div class="rounded-2xl bg-white/70 border px-4 py-3">
-                  <span class="text-slate-600">Telefon: </span>
-                  <a class="font-bold hover:underline" href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a>
-                </div>
-              </div>
+          <div class="grid gap-2 text-sm text-slate-700 pt-2">
+            <div class="rounded-2xl bg-white/70 border px-4 py-3">
+              <span class="text-slate-600">Adresse: </span>
+              <span class="font-bold">{site.address1}</span>, {site.address2}
             </div>
-
-            <!-- Espacio para que la ilustración respire (desktop) -->
-            <div class="hidden lg:block"></div>
+            <div class="rounded-2xl bg-white/70 border px-4 py-3">
+              <span class="text-slate-600">Telefon: </span>
+              <a class="font-bold hover:underline" href={`tel:${site.phoneRaw}`}>
+                {site.phoneDisplay}
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- accesibilidad: descripción del hero -->
-        <img class="sr-only" src="/images/hero.jpg" alt="Illustration mit Kindern, Windmühle, Sonne und Blumenwiese" />
+        <!-- Columna “vacía” para enseñar la ilustración (en desktop) -->
+        <div class="hidden lg:block"></div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <div class="kid-sep"></div>
 
