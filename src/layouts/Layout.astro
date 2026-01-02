@@ -17,14 +17,26 @@ const canonical = Astro.url.toString();
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+
     <meta name="theme-color" content="#f7f3ee" />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
 
+    <!-- Fonts (premium / kid theme) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/favicon.ico" />
+    <!-- (Opcional si luego lo creas) -->
+    <!-- <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" /> -->
   </head>
 
   <body class="min-h-screen kid-page-bg text-slate-900">
