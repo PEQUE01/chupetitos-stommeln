@@ -2,374 +2,276 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================
-   Base
-   ========================= */
-:root{
-  --kid-red: #d84a3a;
-  --kid-blue: #2f74c0;
-  --kid-orange: #f39a2e;
+/* ==============
+   Base (paper/watercolor)
+   ============== */
+@layer base {
+  :root {
+    --kid-paper: #fffaf2;
+    --kid-ink: #0f172a;
 
-  --kid-ink: #1f2937;
-  --kid-muted: #6b7280;
+    /* colores del prototipo (aprox) */
+    --kid-red: #d85a55;
+    --kid-blue: #3f6f9a;
+    --kid-orange: #eb891c;
 
-  --kid-border: rgba(17,24,39,.10);
+    --kid-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+  }
 
-  --kid-shadow-lg: 0 28px 90px rgba(17,24,39,.18);
-  --kid-shadow-md: 0 18px 55px rgba(17,24,39,.14);
-  --kid-shadow-sm: 0 12px 30px rgba(17,24,39,.10);
+  html {
+    font-family: Nunito, ui-sans-serif, system-ui, sans-serif;
+  }
 }
 
-html, body { height: 100%; }
-html { scroll-behavior: smooth; }
-body{
-  margin: 0;
-  color: var(--kid-ink);
-  line-height: 1.5;
-}
-
-/* Para anclas con header sticky */
-section[id]{ scroll-margin-top: 110px; }
-
-/* Tipos (si cargas Google Fonts en Layout) */
-.kid-font{
-  font-family: "Nunito", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
-}
-.kid-title{
-  font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
-}
-
-/* Fondo general (similar al prototipo) */
-.kid-page-bg{
+/* Fondo exterior suave tipo papel/acuarela */
+.kid-page-bg {
   background:
-    radial-gradient(1200px 700px at 50% -10%, rgba(59,130,246,.10), transparent 60%),
-    radial-gradient(1100px 650px at 10% 70%, rgba(239,68,68,.08), transparent 60%),
-    radial-gradient(1100px 650px at 95% 70%, rgba(245,158,11,.10), transparent 60%),
-    linear-gradient(180deg, #f4eef0 0%, #f7f3ee 55%, #f4eef0 100%);
+    radial-gradient(1200px 700px at 20% 0%, rgba(189, 223, 255, 0.25), transparent 60%),
+    radial-gradient(900px 600px at 80% 10%, rgba(255, 210, 210, 0.20), transparent 55%),
+    radial-gradient(900px 600px at 50% 100%, rgba(255, 236, 196, 0.35), transparent 60%),
+    linear-gradient(180deg, #efe9f1 0%, #f3edf5 35%, #efe9f1 100%);
 }
 
-/* Panel “folleto/papel” */
+/* ==============
+   Components (panel/cards/buttons)
+   ============== */
+@layer components {
+  .kid-panel {
+    @apply relative mx-auto max-w-[1100px] overflow-hidden rounded-[28px] ring-1 ring-black/5;
+    background:
+      radial-gradient(700px 320px at 15% 0%, rgba(120, 190, 255, 0.18), transparent 60%),
+      radial-gradient(800px 360px at 85% 10%, rgba(255, 190, 190, 0.16), transparent 60%),
+      radial-gradient(900px 500px at 50% 100%, rgba(255, 224, 170, 0.22), transparent 65%),
+      var(--kid-paper);
+    box-shadow: var(--kid-shadow);
+  }
+
+  .kid-card {
+    @apply rounded-2xl bg-white/65 ring-1 ring-black/5 shadow-sm;
+    backdrop-filter: blur(6px);
+  }
+
+  .kid-btn {
+    @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm transition;
+    background: var(--kid-orange);
+  }
+  .kid-btn:hover {
+    filter: brightness(0.96);
+  }
+
+  .kid-navlink {
+    @apply text-sm font-semibold text-slate-600 transition;
+  }
+  .kid-navlink:hover {
+    @apply text-slate-800;
+  }
+  .kid-navlink-active {
+    color: var(--kid-blue);
+  }
+
+  .kid-h2 {
+    @apply text-3xl font-extrabold tracking-tight;
+    color: var(--kid-blue);
+  }
+
+  .kid-sep {
+    @apply my-10 h-px w-full;
+    background: linear-gradient(90deg, transparent 0%, rgba(15, 23, 42, 0.10) 25%, rgba(15, 23, 42, 0.10) 75%, transparent 100%);
+  }
+
+  .kid-red {
+    color: var(--kid-red);
+  }
+  .kid-blue {
+    color: var(--kid-blue);
+  }
+}
+
+/* =========================================================
+   OVERRIDES PIXEL-PROTOTIPO (Header+Hero+Beneficios)
+   Pegar al FINAL de global.css
+   ========================================================= */
+
+/* Panel más “papel” (menos blanco puro) */
 .kid-flyer{
-  border-radius: 26px;
-  border: 1px solid rgba(17,24,39,.10);
   background:
-    radial-gradient(1000px 540px at 50% 0%, rgba(255,255,255,.82), rgba(255,255,255,.62)),
-    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.66));
-  box-shadow: var(--kid-shadow-lg);
-  overflow: hidden;
+    radial-gradient(1000px 520px at 50% 0%, rgba(255,255,255,.70), rgba(255,255,255,.45)),
+    linear-gradient(180deg, rgba(255,248,235,.92), rgba(255,248,235,.86));
 }
 
-/* Botones */
-.kid-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding: 14px 18px;
-  border-radius: 14px;
-  font-weight: 800;
-  border: 1px solid rgba(0,0,0,.06);
-  box-shadow: 0 10px 22px rgba(15,23,42,.12);
-  transition: transform 140ms ease, filter 140ms ease, background 140ms ease;
-}
-.kid-btn-primary{
-  background: var(--kid-orange);
-  color: #fff;
-}
-.kid-btn-primary:hover{ transform: translateY(-1px); filter: brightness(.98); }
-.kid-btn-ghost{
-  background: rgba(255,255,255,.86);
-  color: var(--kid-ink);
-}
-.kid-btn-ghost:hover{ transform: translateY(-1px); background: rgba(255,255,255,.96); }
-
-.kid-link{
-  color: var(--kid-blue);
-  font-weight: 700;
-}
-
-/* Separador suave tipo acuarela */
-.kid-sep{
-  position: relative;
-  height: 34px;
-  margin: 28px 0;
-  opacity: .95;
-  pointer-events: none;
-}
-.kid-sep::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius: 999px;
-  background:
-    radial-gradient(60% 120% at 15% 50%, rgba(239,68,68,.14), transparent 60%),
-    radial-gradient(60% 120% at 55% 50%, rgba(59,130,246,.14), transparent 60%),
-    radial-gradient(60% 120% at 85% 50%, rgba(245,158,11,.14), transparent 60%);
-  filter: blur(10px);
-}
-.kid-sep::after{
-  content:"";
-  position:absolute;
-  left: 10%;
-  right: 10%;
-  top: 50%;
-  height: 1px;
-  background: rgba(17,24,39,.10);
-  transform: translateY(-50%);
-}
-
-/* =========================
-   HERO “folleto”
-   ========================= */
+/* HERO integrado como en el folleto:
+   - usa hero.jpg como fondo
+   - overlay SOLO a la izquierda (para texto)
+   - el header vive encima del hero, como en el prototipo */
 .kid-hero{
-  padding: 26px;
+  padding: 18px 26px 0;
 }
 @media (max-width: 640px){
-  .kid-hero{ padding: 18px; }
+  .kid-hero{ padding: 14px 18px 0; }
 }
 
 .kid-hero-shell{
-  border-radius: 22px;
-  border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.58);
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid rgba(17,24,39,.08);
   box-shadow: var(--kid-shadow-md);
   overflow: hidden;
+
+  /* Fondo hero (más vivo) */
+  background-image: url("/images/hero.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 72% 32%;
 }
 
+/* Overlay lateral (no “lava” toda la imagen) */
+.kid-hero-shell::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,.92) 0%,
+    rgba(255,255,255,.86) 42%,
+    rgba(255,255,255,.42) 58%,
+    rgba(255,255,255,0) 72%
+  );
+  pointer-events:none;
+}
+
+/* Sutil “papel” en la base para que conecte con las cards */
+.kid-hero-shell::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    180deg,
+    rgba(255,248,235,0) 0%,
+    rgba(255,248,235,.25) 70%,
+    rgba(255,248,235,.55) 100%
+  );
+  pointer-events:none;
+}
+
+/* Todo el contenido por encima de overlays */
+.kid-hero-inner{
+  position: relative;
+  padding: 14px 18px 0;
+}
+@media (max-width: 640px){
+  .kid-hero-inner{ padding: 12px 12px 0; }
+}
+
+/* Header centrado como en el prototipo (logo izq, nav centro, botón der) */
+.kid-header{
+  display:grid;
+  grid-template-columns: 220px 1fr 220px;
+  align-items:center;
+  gap: 12px;
+  padding: 6px 6px 10px;
+}
+@media (max-width: 900px){
+  .kid-header{
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.kid-brand img{
+  height: 44px;
+  width: auto;
+  display:block;
+}
+
+.kid-nav{
+  display:flex;
+  justify-content:center;
+  gap: 22px;
+  font-weight: 800;
+  font-size: 14px;
+  color: #6b7280;
+}
+.kid-nav a{ text-decoration:none; color: inherit; }
+.kid-nav a:hover{ color: #374151; }
+.kid-nav .active{ color: var(--kid-blue); }
+
+@media (max-width: 900px){
+  .kid-nav{ display:none; }
+}
+
+.kid-header-cta{
+  justify-self:end;
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+
+/* HERO copy como prototipo */
 .kid-hero-grid{
-  display: grid;
+  display:grid;
   grid-template-columns: minmax(0, 520px) 1fr;
-  gap: 0;
-  align-items: stretch;
+  align-items: center;
+  padding: 10px 6px 14px;
+}
+@media (max-width: 1024px){
+  .kid-hero-grid{ grid-template-columns: 1fr; padding-bottom: 6px; }
 }
 
 .kid-hero-copy{
-  padding: 26px;
-  background: rgba(255,255,255,.82);
-  backdrop-filter: blur(10px);
-}
-.kid-hero-kicker{
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.78);
-  font-size: 13px;
-  color: #334155;
-  margin-bottom: 14px;
+  padding: 14px 8px 10px;
+  background: transparent; /* ya lo hace el overlay lateral */
+  backdrop-filter: none;
 }
 
 .kid-hero-h1{
-  font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-size: 54px; /* escritorio parecido al prototipo */
-  margin: 0 0 14px;
+  font-size: 56px;
+  margin: 0 0 12px;
 }
-.kid-hero-h1 .red{ color: var(--kid-red); }
-.kid-hero-h1 .blue{ color: var(--kid-blue); }
+@media (max-width: 640px){
+  .kid-hero-h1{ font-size: 40px; }
+}
 
 .kid-hero-lead{
+  font-size: 15px;
+  line-height: 1.55;
   color: #475569;
-  font-size: 16px;
-  max-width: 56ch;
 }
 
-.kid-hero-meta{
-  color: #475569;
-  font-size: 13px;
-  margin-top: 14px;
-}
-
-.kid-hero-cta{
-  display:flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 18px;
-}
-
-/* Lado derecho: imagen grande (como el folleto) */
-.kid-hero-art{
-  position: relative;
-  background: rgba(255,255,255,.30);
-}
-.kid-hero-img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* ===== Ajuste de encuadre (IMPORTANTE) ===== */
-  object-position: 70% 35%; /* escritorio: prioriza molino+niños */
-}
-
-/* Ajuste HERO en móvil (PASO 1 que pedías) */
-@media (max-width: 1024px){
-  .kid-hero-grid{ grid-template-columns: 1fr; }
-  .kid-hero-img{
-    height: 340px;
-    object-position: 60% 30%;
-  }
-}
-@media (max-width: 640px){
-  .kid-hero-h1{ font-size: 38px; }
-  .kid-hero-img{
-    height: 300px;
-    object-position: 62% 25%; /* móvil: sube un poco el cielo/sol */
-  }
-}
-
-/* =========================
-   Fila 3 beneficios (tipo folleto)
-   ========================= */
+/* Beneficios (cards “folleto”) */
 .kid-features{
-  padding: 0 26px 26px;
-}
-@media (max-width: 640px){
-  .kid-features{ padding: 0 18px 18px; }
+  padding: 0 6px 16px;
 }
 
 .kid-features-shell{
+  background: rgba(255,248,235,.60);
   border-top: 1px solid rgba(17,24,39,.08);
-  background: rgba(255,255,255,.42);
-  padding: 18px 18px;
+  padding: 16px 12px;
 }
 
-.kid-features-grid{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 18px;
-}
-@media (max-width: 900px){
-  .kid-features-grid{ grid-template-columns: 1fr; }
-}
-
-.kid-feature{
-  display:flex;
-  gap: 12px;
-  align-items:flex-start;
-}
-
-.kid-feature-icon{
-  width: 46px;
-  height: 46px;
-  border-radius: 999px;
+.kid-feature-card{
+  border-radius: 18px;
   border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.78);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size: 18px;
+  background: rgba(255,255,255,.62);
   box-shadow: var(--kid-shadow-sm);
+  padding: 14px 14px;
+  text-align:center;
+}
+
+.kid-feature-pic{
+  width: 120px;
+  height: 54px;
+  object-fit: contain;
+  display:block;
+  margin: 0 auto 6px;
 }
 
 .kid-feature-title{
   font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
-  font-weight: 800;
+  font-weight: 900;
+  color: var(--kid-blue);
   margin: 0;
   font-size: 18px;
 }
 .kid-feature-text{
   margin-top: 4px;
-  color: #475569;
+  color: #6b7280;
   font-size: 13px;
-}
-
-/* =========================
-   Contacto (similar al folleto)
-   ========================= */
-.kid-contact{
-  padding: 22px 26px 28px;
-}
-@media (max-width: 640px){
-  .kid-contact{ padding: 18px 18px 22px; }
-}
-
-.kid-contact-title{
-  font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
-  font-weight: 900;
-  color: var(--kid-blue);
-  text-align:center;
-  font-size: 40px;
-  margin: 8px 0 6px;
-}
-.kid-contact-sub{
-  text-align:center;
-  color: #475569;
-  font-size: 14px;
-  max-width: 70ch;
-  margin: 0 auto 16px;
-}
-
-.kid-contact-bar{
-  border-radius: 18px;
-  border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.70);
-  box-shadow: var(--kid-shadow-md);
-  padding: 14px 16px;
-}
-
-.kid-contact-bar-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr auto;
-  gap: 12px;
-  align-items:center;
-}
-@media (max-width: 900px){
-  .kid-contact-bar-grid{
-    grid-template-columns: 1fr;
-  }
-}
-
-.kid-contact-item{
-  display:flex;
-  gap: 10px;
-  align-items:center;
-  color: #334155;
-  font-size: 13px;
-}
-.kid-contact-item strong{ font-weight: 800; }
-
-.kid-chip-ico{
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.85);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.kid-contact-bottom{
-  margin-top: 18px;
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 16px;
-}
-@media (max-width: 900px){
-  .kid-contact-bottom{ grid-template-columns: 1fr; }
-}
-
-.kid-big-card{
-  border-radius: 18px;
-  border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.62);
-  box-shadow: var(--kid-shadow-sm);
-  padding: 16px 16px;
-  display:flex;
-  gap: 12px;
-  align-items:flex-start;
-}
-
-.kid-big-ico{
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.85);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size: 22px;
 }

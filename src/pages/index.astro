@@ -1,173 +1,256 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import TopBar from "../components/TopBar.astro";
-import { site } from "../config/site";
 ---
 
-<Layout
-  title={`${site.name} · Kindertagespflege in Pulheim-Stommeln`}
-  description="Liebevolle deutsch–spanische Kindertagespflege in Pulheim-Stommeln. Konzept, Tagesablauf, FAQ und Kontakt."
->
-  <TopBar />
+<Layout>
+  <div id="top" class="px-6 py-6 md:px-10 md:py-8">
+    <!-- HERO + Header integrado (como el prototipo) -->
+    <section class="relative overflow-hidden rounded-[22px] ring-1 ring-black/10 shadow-[0_18px_55px_rgba(15,23,42,0.12)]">
+      <!-- Fondo ilustración -->
+      <div class="absolute inset-0 bg-[url('/images/hero.jpg')] bg-cover bg-[position:72%_35%]"></div>
 
-  <main class="mx-auto max-w-5xl px-4 pb-16">
-    <!-- PANEL FOLLETO -->
-    <section class="kid-flyer mt-8">
-      <!-- HERO -->
-      <div class="kid-hero">
-        <div class="kid-hero-shell">
-          <div class="kid-hero-grid">
-            <!-- Copy -->
-            <div class="kid-hero-copy">
-              <div class="kid-hero-kicker kid-font">
-                <strong>Deutsch–spanische Kindertagespflege</strong>
-                <span class="text-slate-500">· Pulheim (Stommeln)</span>
-              </div>
+      <!-- Overlay lateral (deja la derecha viva) -->
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/0"></div>
 
-              <h1 class="kid-hero-h1">
-                <span class="red">Liebevolle Betreuung</span><br />
-                <span class="blue">in Deutsch &amp; Spanisch</span>
-              </h1>
+      <!-- Contenido -->
+      <div class="relative px-6 pt-5 md:px-8 md:pt-6">
+        <!-- Header dentro del HERO -->
+        <header class="grid items-center gap-4 md:grid-cols-[220px_1fr_220px]">
+          <a href="#top" class="flex items-center">
+            <img src="/images/logo.png" alt="Chupetitos Stommeln" class="h-11 w-auto" />
+          </a>
 
-              <p class="kid-hero-lead kid-font">
-                Willkommen bei {site.name}! Wir bieten herzliche und familiäre Kindertagespflege
-                mit klaren Routinen, liebevoller Begleitung und transparenter Kommunikation.
-              </p>
+          <nav class="hidden items-center justify-center gap-6 md:flex">
+            <a class="kid-navlink kid-navlink-active" href="#top">Startseite</a>
+            <a class="kid-navlink" href="#uberuns">Über uns</a>
+            <a class="kid-navlink" href="#betreuung">Betreuung</a>
+            <a class="kid-navlink" href="#infos">Infos</a>
+            <a class="kid-navlink flex items-center gap-2" href="#kontakt">
+              <span aria-hidden="true">✉</span>
+              Kontakt
+            </a>
+          </nav>
 
-              <div class="kid-hero-meta kid-font">
-                {site.role} <strong>{site.person}</strong> · {site.hours}
-              </div>
+          <div class="flex justify-end">
+            <a class="kid-btn px-5 py-2.5" href="#kontakt">Kontakt</a>
+          </div>
+        </header>
 
-              <div class="kid-hero-cta">
-                <a class="kid-btn kid-btn-primary" href="#kontakt">Jetzt Kontakt aufnehmen</a>
-                <a class="kid-btn kid-btn-ghost" href={`tel:${site.phoneRaw}`}>Jetzt anrufen</a>
-              </div>
-            </div>
+        <!-- Copy del hero -->
+        <div class="grid gap-10 pb-6 pt-5 md:grid-cols-2 md:items-center md:pb-8 md:pt-7">
+          <div class="max-w-[520px]">
+            <h1 class="font-extrabold leading-[1.05] tracking-tight text-[44px] md:text-[56px]">
+              <span class="kid-red">Liebevolle Betreuung</span><br />
+              <span class="kid-blue">in Deutsch &amp; Spanisch</span>
+            </h1>
 
-            <!-- Art -->
-            <div class="kid-hero-art" aria-hidden="true">
-              <img
-                src="/images/hero.jpg"
-                alt="Illustration Kindertagespflege"
-                class="kid-hero-img"
-                loading="eager"
-              />
-            </div>
+            <p class="mt-4 max-w-[60ch] text-sm leading-relaxed text-slate-700 md:text-[15px]">
+              Willkommen bei Chupetitos Stommeln!<br />
+              Wir bieten herzliche und familiäre Kinderbetreuung in deutscher und spanischer Sprache
+              für Kinder von 1 bis 3 Jahren im schönen Pulheim-Stommeln.
+            </p>
+
+            <a href="#kontakt" class="kid-btn mt-5 inline-flex px-6 py-3">Jetzt Kontakt aufnehmen</a>
           </div>
 
-          <!-- 3 BENEFICIOS -->
-          <div class="kid-features">
-            <div class="kid-features-shell">
-              <div class="kid-features-grid">
-                <div class="kid-feature">
-                  <div class="kid-feature-icon" aria-hidden="true">🏡</div>
-                  <div>
-                    <p class="kid-feature-title" style="color: var(--kid-blue);">Familiäre Atmosphäre</p>
-                    <p class="kid-feature-text kid-font">
-                      Kleine Gruppe, klare Routinen und individuelle Zuwendung – damit Ihr Kind sich sicher und gesehen fühlt.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="kid-feature">
-                  <div class="kid-feature-icon" aria-hidden="true">🇩🇪🇪🇸</div>
-                  <div>
-                    <p class="kid-feature-title" style="color: var(--kid-red);">Deutsch &amp; Spanisch</p>
-                    <p class="kid-feature-text kid-font">
-                      Sprache im Alltag – spielerisch durch Rituale, Lieder, Gespräche und Aktivitäten.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="kid-feature">
-                  <div class="kid-feature-icon" aria-hidden="true">🕒</div>
-                  <div>
-                    <p class="kid-feature-title" style="color: var(--kid-orange);">Flexible Betreuungszeiten</p>
-                    <p class="kid-feature-text kid-font">
-                      Montag–Freitag: {site.hours}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          <!-- Columna vacía: la imagen vive en el background -->
+          <div class="hidden md:block"></div>
         </div>
       </div>
 
-      <div class="kid-sep"></div>
+      <!-- Beneficios integrados (tira inferior como folleto) -->
+      <div class="relative border-t border-black/10 bg-white/40 px-6 py-5 md:px-8 md:py-6">
+        <div class="grid gap-4 md:grid-cols-3">
+          <div class="kid-card px-6 py-5 text-center">
+            <img
+              src="/images/icons/home.png"
+              alt=""
+              aria-hidden="true"
+              class="mx-auto mb-2 h-12 w-auto object-contain"
+              loading="lazy"
+            />
+            <div class="font-extrabold kid-blue">Familiäre Atmosphäre</div>
+            <div class="mt-1 text-xs text-slate-600">Ein liebevolles Umfeld für Ihr Kind</div>
+          </div>
 
-      <!-- KONTAKT (tipo folleto) -->
-      <section id="kontakt" class="kid-contact">
-        <h2 class="kid-contact-title">Kontaktieren Sie uns</h2>
-        <p class="kid-contact-sub kid-font">
-          Am schnellsten telefonisch. Bitte nennen Sie Alter des Kindes, gewünschtes Startdatum und Betreuungsumfang.
+          <div class="kid-card px-6 py-5 text-center">
+            <img
+              src="/images/icons/flags.png"
+              alt=""
+              aria-hidden="true"
+              class="mx-auto mb-2 h-12 w-auto object-contain"
+              loading="lazy"
+            />
+            <div class="font-extrabold kid-blue">Deutsch &amp; Spanisch</div>
+            <div class="mt-1 text-xs text-slate-600">Bilinguale Betreuung für die Kleinsten</div>
+          </div>
+
+          <div class="kid-card px-6 py-5 text-center">
+            <img
+              src="/images/icons/clock.png"
+              alt=""
+              aria-hidden="true"
+              class="mx-auto mb-2 h-12 w-auto object-contain"
+              loading="lazy"
+            />
+            <div class="font-extrabold kid-blue">Flexible Betreuungszeiten</div>
+            <div class="mt-1 text-xs text-slate-600">Montag – Freitag: 7:45 – 15:45 Uhr</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="kid-sep"></div>
+
+    <!-- Unser Konzept -->
+    <section id="infos" class="grid gap-10 md:grid-cols-2 md:items-center">
+      <div>
+        <h2 class="kid-h2">Unser Konzept</h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          Unser kompetenter Pädagogismus… (hier ersetzt du später den echten Text, wenn quieres).
         </p>
 
-        <div class="kid-contact-bar">
-          <div class="kid-contact-bar-grid">
-            <div class="kid-contact-item">
-              <div class="kid-chip-ico" aria-hidden="true">📍</div>
-              <div class="kid-font">
-                <strong>{site.address1}</strong><br />
-                <span class="text-slate-600">{site.address2}</span>
-              </div>
+        <ul class="mt-5 space-y-4 text-sm text-slate-700">
+          <li class="flex gap-3">
+            <span class="mt-0.5">❤️</span>
+            <div>
+              <div class="font-bold kid-blue">Liebevolle Eingewöhnung</div>
+              <div class="text-slate-600">und individuelle Betreuung</div>
             </div>
+          </li>
 
-            <div class="kid-contact-item">
-              <div class="kid-chip-ico" aria-hidden="true">📞</div>
-              <div class="kid-font">
-                <strong>{site.phoneDisplay}</strong><br />
-                <span class="text-slate-600">{site.hours}</span>
-              </div>
+          <li class="flex gap-3">
+            <span class="mt-0.5">🐢</span>
+            <div>
+              <div class="font-bold kid-blue">Spielerisches Lernen</div>
+              <div class="text-slate-600">und Entdecken auf Deutsch und Spanisch</div>
             </div>
+          </li>
 
-            <div class="kid-contact-item">
-              <div class="kid-chip-ico" aria-hidden="true">✉️</div>
-              <div class="kid-font">
-                <strong>{site.email ?? "info@chupetitos-stommeln.de"}</strong><br />
-                <span class="text-slate-600">E-Mail</span>
-              </div>
+          <li class="flex gap-3">
+            <span class="mt-0.5">✏️</span>
+            <div>
+              <div class="font-bold kid-blue">Förderung</div>
+              <div class="text-slate-600">der sozialen, motorischen und sprachlichen Entwicklung</div>
             </div>
+          </li>
+        </ul>
+      </div>
 
-            <a class="kid-btn kid-btn-primary" href="/kontakt">Nachricht senden</a>
-          </div>
-        </div>
-
-        <div class="kid-contact-bottom">
-          <div class="kid-big-card">
-            <div class="kid-big-ico" aria-hidden="true">📍</div>
-            <div class="kid-font">
-              <div class="kid-title font-extrabold" style="color: var(--kid-blue);">Adresse</div>
-              <div class="mt-1">{site.address1}</div>
-              <div class="text-slate-600">{site.address2}</div>
-            </div>
-          </div>
-
-          <div class="kid-big-card">
-            <div class="kid-big-ico" aria-hidden="true">📞</div>
-            <div class="kid-font">
-              <div class="kid-title font-extrabold" style="color: var(--kid-blue);">Telefon</div>
-              <a class="mt-1 inline-block font-extrabold hover:underline" href={`tel:${site.phoneRaw}`}>
-                {site.phoneDisplay}
-              </a>
-              <div class="text-slate-600">{site.hours}</div>
-            </div>
-          </div>
-
-          <div class="kid-big-card">
-            <div class="kid-big-ico" aria-hidden="true">✉️</div>
-            <div class="kid-font">
-              <div class="kid-title font-extrabold" style="color: var(--kid-blue);">E-Mail</div>
-              <div class="mt-1 font-extrabold">{site.email ?? "info@chupetitos-stommeln.de"}</div>
-              <div class="text-slate-600">Kontakt</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Si quieres mantener más secciones debajo, las dejamos para el siguiente paso.
-           Primero clavamos escritorio “folleto” como el prototipo. -->
+      <div class="flex justify-center md:justify-end">
+        <img
+          src="/images/konzept.jpg"
+          alt="Unser Konzept"
+          loading="lazy"
+          class="h-auto w-full max-w-[520px] rounded-2xl bg-white/40 ring-1 ring-black/5"
+        />
+      </div>
     </section>
-  </main>
+
+    <div class="kid-sep"></div>
+
+    <!-- Doble bloque inferior: Team + Kontakt/Berlin-Modell -->
+    <section id="betreuung" class="grid gap-6 md:grid-cols-2">
+      <!-- Unser Team -->
+      <div class="kid-card p-6 md:p-8">
+        <h2 class="kid-h2">Unser Team</h2>
+
+        <div class="mt-4">
+          <img
+            src="/images/team.jpg"
+            alt="Unser Team"
+            loading="lazy"
+            class="h-auto w-full rounded-2xl bg-white/40 ring-1 ring-black/5"
+          />
+        </div>
+
+        <p class="mt-4 text-sm leading-relaxed text-slate-700">
+          Dann heute… (texto placeholder como el prototipo). Hier kannst du später kurz erklären, wer ihr seid.
+        </p>
+
+        <div class="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white/50 px-4 py-3 ring-1 ring-black/5">
+          <div class="flex items-center gap-2 text-sm text-slate-700">
+            <span aria-hidden="true">📍</span>
+            <span class="font-semibold">1054576 7722</span>
+          </div>
+
+          <a class="kid-btn px-5 py-2.5" href="#kontakt">Nachricht senden</a>
+        </div>
+      </div>
+
+      <!-- Kontakt / Berlin-Modell -->
+      <div id="kontakt" class="kid-card p-6 md:p-8">
+        <h2 class="text-2xl font-extrabold leading-tight md:text-3xl">
+          <span class="kid-blue">Sanfte Eingewöhnung</span><br />
+          <span class="kid-blue">nach dem Berlin-Modell</span>
+        </h2>
+
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          Wir begleiten… (placeholder). Kurze Erklärung, wie ihr die Eingewöhnung macht.
+        </p>
+
+        <ul class="mt-4 space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2">
+            <span class="text-green-700">✓</span>
+            <span>Langsame, behutsame Gewöhnung an die neue Umgebung</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-green-700">✓</span>
+            <span>Enge Zusammenarbeit mit den Eltern</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-green-700">✓</span>
+            <span>Sicherheit und Geborgenheit für jedes Kind</span>
+          </li>
+        </ul>
+
+        <div class="mt-5 overflow-hidden rounded-2xl bg-white/55 ring-1 ring-black/5">
+          <img
+            src="/images/map.jpg"
+            alt="Standort"
+            loading="lazy"
+            class="h-28 w-full object-cover"
+          />
+          <div class="flex items-center gap-3 px-4 py-3">
+            <span class="text-lg" aria-hidden="true">📍</span>
+            <div class="text-sm">
+              <div class="font-extrabold text-slate-800">Am Holländer 22</div>
+              <div class="text-slate-600">50259 Pulheim (Stommeln)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <a
+            class="flex items-center justify-center gap-2 rounded-2xl bg-white/55 px-4 py-3 text-sm font-bold text-slate-700 ring-1 ring-black/5 hover:bg-white/70"
+            href="tel:+4915731877629"
+          >
+            <span aria-hidden="true">📞</span>
+            <span>Telefon</span>
+            <span class="font-semibold text-slate-600">01573 1877629</span>
+          </a>
+
+          <a
+            class="flex items-center justify-center gap-2 rounded-2xl bg-white/55 px-4 py-3 text-sm font-bold text-slate-700 ring-1 ring-black/5 hover:bg-white/70"
+            href="mailto:info@chupetitos-stommeln.de"
+          >
+            <span aria-hidden="true">✉️</span>
+            <span>E-Mail</span>
+            <span class="font-semibold text-slate-600">info@chupetitos-stommeln.de</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-10 pb-4 text-center text-xs text-slate-500">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a class="hover:text-slate-700" href="/impressum">Impressum</a>
+        <span aria-hidden="true">•</span>
+        <a class="hover:text-slate-700" href="/datenschutz">Datenschutz</a>
+        <span aria-hidden="true">•</span>
+        <a class="hover:text-slate-700" href="/rechte">Juli Rechte-vorbehalten</a>
+      </div>
+    </footer>
+  </div>
 </Layout>

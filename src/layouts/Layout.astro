@@ -1,59 +1,41 @@
 ---
 import "../styles/global.css";
 
-const { title, description } = Astro.props as {
-  title: string;
-  description: string;
-};
+export interface Props {
+  title?: string;
+  description?: string;
+}
 
-const canonical = Astro.url.toString();
+const {
+  title = "Chupetitos Stommeln",
+  description = "Liebevolle und familiäre Kinderbetreuung in Deutsch & Spanisch in Pulheim-Stommeln.",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="de">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
 
-    <meta name="theme-color" content="#f7f3ee" />
-
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-
-    <!-- Fonts (premium / kid theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap"
     />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Icons -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate icon" href="/favicon.ico" />
-    <!-- (Opcional si luego lo creas) -->
-    <!-- <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" /> -->
+    <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
 
-  <body class="min-h-screen kid-page-bg text-slate-900">
-    <slot />
-
-    <footer class="mt-16 border-t bg-white/70 backdrop-blur">
-      <div class="mx-auto max-w-5xl px-4 py-8 text-sm text-slate-600 flex flex-col gap-2">
-        <div class="flex flex-wrap gap-x-4 gap-y-2">
-          <a class="hover:underline" href="/impressum">Impressum</a>
-          <a class="hover:underline" href="/datenschutz">Datenschutz</a>
-        </div>
-        <div>© {new Date().getFullYear()} Chupetitos Stommeln</div>
-      </div>
-    </footer>
+  <body class="min-h-screen kid-page-bg kid-font text-slate-900 antialiased">
+    <div class="px-4 py-8 md:py-10">
+      <!-- Tu CSS actual usa .kid-flyer -->
+      <main class="kid-flyer mx-auto max-w-[1100px]">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
