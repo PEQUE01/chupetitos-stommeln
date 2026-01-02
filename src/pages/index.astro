@@ -10,286 +10,164 @@ import { site } from "../config/site";
 >
   <TopBar />
 
-  <main class="mx-auto max-w-5xl px-4">
-    <!-- HERO (folleto / acuarela) -->
-<section class="pt-10 pb-10">
-  <div class="kid-hero">
-    <div class="kid-hero-bg" aria-hidden="true"></div>
-    <div class="kid-hero-scrim" aria-hidden="true"></div>
+  <main class="mx-auto max-w-5xl px-4 pb-16">
+    <!-- PANEL FOLLETO -->
+    <section class="kid-flyer mt-8">
+      <!-- HERO -->
+      <div class="kid-hero">
+        <div class="kid-hero-shell">
+          <div class="kid-hero-grid">
+            <!-- Copy -->
+            <div class="kid-hero-copy">
+              <div class="kid-hero-kicker kid-font">
+                <strong>Deutsch–spanische Kindertagespflege</strong>
+                <span class="text-slate-500">· Pulheim (Stommeln)</span>
+              </div>
 
-    <div class="kid-hero-inner">
-      <div class="kid-hero-grid">
-        <div class="kid-hero-copy space-y-5">
-          <p class="inline-flex flex-wrap items-center gap-2 rounded-full border bg-white/70 px-3 py-1 text-sm">
-            <span class="font-extrabold kid-title">{site.tagline}</span>
-            <span class="text-slate-500">· Pulheim (Stommeln)</span>
-          </p>
+              <h1 class="kid-hero-h1">
+                <span class="red">Liebevolle Betreuung</span><br />
+                <span class="blue">in Deutsch &amp; Spanisch</span>
+              </h1>
 
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight kid-title">
-            <span style="color:var(--kid-red)">Liebevolle Betreuung</span><br />
-            <span style="color:var(--kid-blue)">in Deutsch &amp; Spanisch</span>
-          </h1>
-
-          <p class="text-base md:text-lg text-slate-700 max-w-xl">
-            Willkommen bei {site.name}! Familiäre Kindertagespflege mit klaren Routinen,
-            liebevoller Begleitung und transparenter Kommunikation.
-          </p>
-
-          <p class="text-sm md:text-base text-slate-700">
-            {site.role} <span class="font-semibold">{site.person}</span>
-            <span class="text-slate-400">·</span> {site.hours}
-          </p>
-
-          <div class="flex flex-wrap gap-3 pt-1">
-            <a class="kid-btn kid-btn-primary" href={`tel:${site.phoneRaw}`}>Jetzt Kontakt aufnehmen</a>
-            <a class="kid-btn kid-btn-ghost" href="#kontakt">Kontakt (schnell)</a>
-          </div>
-
-          <div class="flex flex-wrap gap-2 pt-2">
-            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Kleine Gruppe</span>
-            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Struktur & Rituale</span>
-            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Deutsch &amp; Spanisch</span>
-            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Elternkommunikation</span>
-          </div>
-
-          <div class="grid gap-2 text-sm text-slate-700 pt-2">
-            <div class="rounded-2xl bg-white/70 border px-4 py-3">
-              <span class="text-slate-600">Adresse: </span>
-              <span class="font-bold">{site.address1}</span>, {site.address2}
-            </div>
-            <div class="rounded-2xl bg-white/70 border px-4 py-3">
-              <span class="text-slate-600">Telefon: </span>
-              <a class="font-bold hover:underline" href={`tel:${site.phoneRaw}`}>
-                {site.phoneDisplay}
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Columna “vacía” para enseñar la ilustración (en desktop) -->
-        <div class="hidden lg:block"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <div class="kid-sep"></div>
-
-    <!-- VALUE PROPS tipo folleto -->
-    <section>
-      <div class="kid-card p-8 md:p-10">
-        <div class="grid gap-8 md:grid-cols-3">
-          <div class="flex gap-4">
-            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">🏡</div>
-            <div>
-              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-blue)">Familiäre Atmosphäre</h2>
-              <p class="mt-1 text-sm text-slate-700">
-                Kleine Gruppe, klare Routinen und individuelle Zuwendung – damit Ihr Kind sich sicher und gesehen fühlt.
+              <p class="kid-hero-lead kid-font">
+                Willkommen bei {site.name}! Wir bieten herzliche und familiäre Kindertagespflege
+                mit klaren Routinen, liebevoller Begleitung und transparenter Kommunikation.
               </p>
+
+              <div class="kid-hero-meta kid-font">
+                {site.role} <strong>{site.person}</strong> · {site.hours}
+              </div>
+
+              <div class="kid-hero-cta">
+                <a class="kid-btn kid-btn-primary" href="#kontakt">Jetzt Kontakt aufnehmen</a>
+                <a class="kid-btn kid-btn-ghost" href={`tel:${site.phoneRaw}`}>Jetzt anrufen</a>
+              </div>
+            </div>
+
+            <!-- Art -->
+            <div class="kid-hero-art" aria-hidden="true">
+              <img
+                src="/images/hero.jpg"
+                alt="Illustration Kindertagespflege"
+                class="kid-hero-img"
+                loading="eager"
+              />
             </div>
           </div>
 
-          <div class="flex gap-4">
-            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">🇩🇪🇪🇸</div>
-            <div>
-              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-red)">Deutsch &amp; Spanisch</h2>
-              <p class="mt-1 text-sm text-slate-700">
-                Sprache im Alltag – spielerisch durch Rituale, Lieder, Gespräche und Aktivitäten.
-              </p>
+          <!-- 3 BENEFICIOS -->
+          <div class="kid-features">
+            <div class="kid-features-shell">
+              <div class="kid-features-grid">
+                <div class="kid-feature">
+                  <div class="kid-feature-icon" aria-hidden="true">🏡</div>
+                  <div>
+                    <p class="kid-feature-title" style="color: var(--kid-blue);">Familiäre Atmosphäre</p>
+                    <p class="kid-feature-text kid-font">
+                      Kleine Gruppe, klare Routinen und individuelle Zuwendung – damit Ihr Kind sich sicher und gesehen fühlt.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="kid-feature">
+                  <div class="kid-feature-icon" aria-hidden="true">🇩🇪🇪🇸</div>
+                  <div>
+                    <p class="kid-feature-title" style="color: var(--kid-red);">Deutsch &amp; Spanisch</p>
+                    <p class="kid-feature-text kid-font">
+                      Sprache im Alltag – spielerisch durch Rituale, Lieder, Gespräche und Aktivitäten.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="kid-feature">
+                  <div class="kid-feature-icon" aria-hidden="true">🕒</div>
+                  <div>
+                    <p class="kid-feature-title" style="color: var(--kid-orange);">Flexible Betreuungszeiten</p>
+                    <p class="kid-feature-text kid-font">
+                      Montag–Freitag: {site.hours}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="flex gap-4">
-            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">🕒</div>
-            <div>
-              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-orange)">Klare Zeiten &amp; Struktur</h2>
-              <p class="mt-1 text-sm text-slate-700">
-                Ein ruhiger Tagesrhythmus mit festen Übergängen – das gibt Orientierung und Vertrauen.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
 
-    <div class="kid-sep"></div>
+      <div class="kid-sep"></div>
 
-    <!-- KONZEPT (preview para que el link del menú tenga sección en Home) -->
-    <section id="konzept" class="scroll-mt-28">
-      <div class="kid-card p-8 md:p-10">
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-          <div class="max-w-2xl">
-            <p class="text-sm font-bold text-slate-500">Konzept</p>
-            <h2 class="mt-2 text-2xl md:text-3xl font-extrabold kid-title" style="color:var(--kid-blue)">
-              Pädagogik mit Nähe und Struktur
-            </h2>
-            <p class="mt-3 text-slate-700">
-              Wir schaffen einen Rahmen, in dem Kinder sich sicher fühlen und in ihrem eigenen Tempo lernen können:
-              Rituale, klare Abläufe, Spiel, Bewegung und Entdecken.
-            </p>
-
-            <ul class="mt-4 grid gap-2 text-sm text-slate-700">
-              <li>• Individuelle Eingewöhnung in enger Abstimmung mit den Eltern</li>
-              <li>• Altersgerechte Förderung, Sprache im Alltag (Deutsch/Spanisch)</li>
-              <li>• Wertschätzende Kommunikation und klare Regeln</li>
-            </ul>
-          </div>
-
-          <div class="flex flex-wrap gap-3">
-            <a class="kid-btn kid-btn-primary" href="/konzept">Konzept ansehen</a>
-            <a class="kid-btn kid-btn-ghost" href="#kontakt">Kennenlerntermin</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="kid-sep"></div>
-
-    <!-- TAGESABLAUF -->
-    <section id="ablauf" class="scroll-mt-28">
-      <div class="kid-card p-8 md:p-10">
-        <p class="text-sm font-bold text-slate-500">Tagesablauf</p>
-        <h2 class="mt-2 text-2xl md:text-3xl font-extrabold kid-title" style="color:var(--kid-blue)">
-          Ein klarer Rhythmus für Sicherheit
-        </h2>
-
-        <div class="mt-6 grid gap-3">
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-            <div class="min-w-28 font-bold">Morgens</div>
-            <div class="text-slate-700">Ankommen, Freispiel, Morgenkreis</div>
-          </div>
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-            <div class="min-w-28 font-bold">Vormittag</div>
-            <div class="text-slate-700">Aktivitäten, Basteln, Bewegung, draußen</div>
-          </div>
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-            <div class="min-w-28 font-bold">Mittag</div>
-            <div class="text-slate-700">Essen, ruhige Übergänge</div>
-          </div>
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-            <div class="min-w-28 font-bold">Mittagsruhe</div>
-            <div class="text-slate-700">Ruhezeit / Schlaf (altersgerecht)</div>
-          </div>
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-            <div class="min-w-28 font-bold">Nachmittag</div>
-            <div class="text-slate-700">Spiel, Abholen, kurze Tagesinfo</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="kid-sep"></div>
-
-    <!-- GALERIE -->
-    <section id="galerie" class="scroll-mt-28">
-      <div class="kid-card p-8 md:p-10">
-        <p class="text-sm font-bold text-slate-500">Galerie</p>
-        <h2 class="mt-2 text-2xl md:text-3xl font-extrabold kid-title" style="color:var(--kid-blue)">
-          Einblicke in den Alltag
-        </h2>
-        <p class="mt-3 text-slate-700">
-          Einheitliche, helle Fotos wirken am professionellsten. Keine erkennbaren Kinder.
+      <!-- KONTAKT (tipo folleto) -->
+      <section id="kontakt" class="kid-contact">
+        <h2 class="kid-contact-title">Kontaktieren Sie uns</h2>
+        <p class="kid-contact-sub kid-font">
+          Am schnellsten telefonisch. Bitte nennen Sie Alter des Kindes, gewünschtes Startdatum und Betreuungsumfang.
         </p>
 
-        <div class="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 1" loading="lazy" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 2" loading="lazy" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 3" loading="lazy" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 4" loading="lazy" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 5" loading="lazy" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 6" loading="lazy" />
-        </div>
-      </div>
-    </section>
-
-    <div class="kid-sep"></div>
-
-    <!-- FAQ -->
-    <section id="faq" class="scroll-mt-28">
-      <div class="kid-card p-8 md:p-10">
-        <p class="text-sm font-bold text-slate-500">FAQ</p>
-        <h2 class="mt-2 text-2xl md:text-3xl font-extrabold kid-title" style="color:var(--kid-blue)">
-          Häufige Fragen
-        </h2>
-
-        <div class="mt-6 grid gap-3">
-          <details class="rounded-2xl border bg-white/70 px-5 py-4">
-            <summary class="cursor-pointer font-bold">Wie läuft die Eingewöhnung ab?</summary>
-            <p class="mt-2 text-sm text-slate-700">
-              Schrittweise und individuell – in enger Abstimmung mit den Eltern, damit Ihr Kind Vertrauen und Stabilität aufbauen kann.
-            </p>
-          </details>
-
-          <details class="rounded-2xl border bg-white/70 px-5 py-4">
-            <summary class="cursor-pointer font-bold">Welche Informationen soll ich beim Anruf bereithalten?</summary>
-            <p class="mt-2 text-sm text-slate-700">
-              Bitte nennen Sie Alter des Kindes, gewünschtes Startdatum und Betreuungsumfang – so können wir schnell prüfen, ob es passt.
-            </p>
-          </details>
-
-          <details class="rounded-2xl border bg-white/70 px-5 py-4">
-            <summary class="cursor-pointer font-bold">Wo finde ich mehr Details?</summary>
-            <p class="mt-2 text-sm text-slate-700">
-              Im Bereich Konzept und auf der Kontaktseite finden Sie weitere Informationen.
-            </p>
-          </details>
-        </div>
-
-        <div class="mt-6">
-          <a class="kid-btn kid-btn-ghost" href="/faq">Alle FAQ ansehen</a>
-        </div>
-      </div>
-    </section>
-
-    <div class="kid-sep"></div>
-
-    <!-- KONTAKT (franja tipo folleto) -->
-    <section id="kontakt" class="pb-14 scroll-mt-28">
-      <div class="kid-card p-8 md:p-10">
-        <div class="text-center">
-          <h2 class="text-3xl md:text-4xl font-extrabold kid-title" style="color:var(--kid-blue)">
-            Kontaktieren Sie uns
-          </h2>
-          <p class="mt-3 text-slate-700 max-w-2xl mx-auto">
-            Am schnellsten telefonisch. Bitte nennen Sie Alter des Kindes, gewünschtes Startdatum und Betreuungsumfang.
-          </p>
-        </div>
-
-        <div class="mt-8 rounded-3xl border bg-white/75 p-6 md:p-7 shadow-sm">
-          <div class="grid gap-5 md:grid-cols-3 md:items-center">
-            <div class="flex gap-3">
-              <div class="h-11 w-11 shrink-0 rounded-2xl border bg-white flex items-center justify-center text-xl">📍</div>
-              <div class="text-sm text-slate-700">
-                <div class="font-extrabold kid-title">Adresse</div>
-                <div class="mt-1">{site.address1}</div>
-                <div class="text-slate-600">{site.address2}</div>
+        <div class="kid-contact-bar">
+          <div class="kid-contact-bar-grid">
+            <div class="kid-contact-item">
+              <div class="kid-chip-ico" aria-hidden="true">📍</div>
+              <div class="kid-font">
+                <strong>{site.address1}</strong><br />
+                <span class="text-slate-600">{site.address2}</span>
               </div>
             </div>
 
-            <div class="flex gap-3">
-              <div class="h-11 w-11 shrink-0 rounded-2xl border bg-white flex items-center justify-center text-xl">📞</div>
-              <div class="text-sm text-slate-700">
-                <div class="font-extrabold kid-title">Telefon</div>
-                <a class="mt-1 inline-block font-bold hover:underline" href={`tel:${site.phoneRaw}`}>
-                  {site.phoneDisplay}
-                </a>
-                <div class="text-slate-600">{site.hours}</div>
+            <div class="kid-contact-item">
+              <div class="kid-chip-ico" aria-hidden="true">📞</div>
+              <div class="kid-font">
+                <strong>{site.phoneDisplay}</strong><br />
+                <span class="text-slate-600">{site.hours}</span>
               </div>
             </div>
 
-            <div class="flex md:justify-end">
-              <a class="kid-btn kid-btn-primary w-full md:w-auto" href={`tel:${site.phoneRaw}`}>
-                Jetzt Kontakt aufnehmen
-              </a>
+            <div class="kid-contact-item">
+              <div class="kid-chip-ico" aria-hidden="true">✉️</div>
+              <div class="kid-font">
+                <strong>{site.email ?? "info@chupetitos-stommeln.de"}</strong><br />
+                <span class="text-slate-600">E-Mail</span>
+              </div>
             </div>
+
+            <a class="kid-btn kid-btn-primary" href="/kontakt">Nachricht senden</a>
           </div>
         </div>
 
-        <div class="mt-6 flex justify-center">
-          <a class="kid-btn kid-btn-ghost" href="/kontakt">Standort &amp; Kontaktseite</a>
+        <div class="kid-contact-bottom">
+          <div class="kid-big-card">
+            <div class="kid-big-ico" aria-hidden="true">📍</div>
+            <div class="kid-font">
+              <div class="kid-title font-extrabold" style="color: var(--kid-blue);">Adresse</div>
+              <div class="mt-1">{site.address1}</div>
+              <div class="text-slate-600">{site.address2}</div>
+            </div>
+          </div>
+
+          <div class="kid-big-card">
+            <div class="kid-big-ico" aria-hidden="true">📞</div>
+            <div class="kid-font">
+              <div class="kid-title font-extrabold" style="color: var(--kid-blue);">Telefon</div>
+              <a class="mt-1 inline-block font-extrabold hover:underline" href={`tel:${site.phoneRaw}`}>
+                {site.phoneDisplay}
+              </a>
+              <div class="text-slate-600">{site.hours}</div>
+            </div>
+          </div>
+
+          <div class="kid-big-card">
+            <div class="kid-big-ico" aria-hidden="true">✉️</div>
+            <div class="kid-font">
+              <div class="kid-title font-extrabold" style="color: var(--kid-blue);">E-Mail</div>
+              <div class="mt-1 font-extrabold">{site.email ?? "info@chupetitos-stommeln.de"}</div>
+              <div class="text-slate-600">Kontakt</div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Si quieres mantener más secciones debajo, las dejamos para el siguiente paso.
+           Primero clavamos escritorio “folleto” como el prototipo. -->
     </section>
   </main>
 </Layout>

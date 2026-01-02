@@ -1,50 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   Base
+   ========================= */
 :root{
-  /* Base */
-  --bg: #fbfbfc;
-  --surface: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --border: rgba(17,24,39,.10);
-
-  --radius: 16px;
-  --shadow: 0 10px 30px rgba(17,24,39,.08);
-  --container: 1120px;
-
-  /* Kids / Watercolor */
   --kid-red: #d84a3a;
   --kid-blue: #2f74c0;
   --kid-orange: #f39a2e;
 
-  --kid-paper: #fbf3e6;
   --kid-ink: #1f2937;
-  --kid-border: rgba(15,23,42,.10);
-  --kid-shadow: 0 18px 50px rgba(17,24,39,.10);
+  --kid-muted: #6b7280;
+
+  --kid-border: rgba(17,24,39,.10);
+
+  --kid-shadow-lg: 0 28px 90px rgba(17,24,39,.18);
+  --kid-shadow-md: 0 18px 55px rgba(17,24,39,.14);
+  --kid-shadow-sm: 0 12px 30px rgba(17,24,39,.10);
 }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-html{ scroll-behavior:smooth; }
-
+html, body { height: 100%; }
+html { scroll-behavior: smooth; }
 body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
-  color: var(--text);
+  margin: 0;
+  color: var(--kid-ink);
   line-height: 1.5;
-
-  /* Fondo papel + acuarela */
-  background:
-    radial-gradient(900px 500px at 15% 20%, rgba(59,130,246,.10), transparent 60%),
-    radial-gradient(900px 500px at 85% 20%, rgba(239,68,68,.10), transparent 60%),
-    radial-gradient(900px 500px at 55% 90%, rgba(245,158,11,.10), transparent 60%),
-    linear-gradient(180deg, #f7f3ee 0%, #fbfbfc 45%, #f7f3ee 100%);
 }
 
-a{ color:inherit; text-decoration:none; }
-img{ max-width:100%; display:block; }
+/* Para anclas con header sticky */
+section[id]{ scroll-margin-top: 110px; }
 
-section[id]{ scroll-margin-top: 96px; }
-
-/* Tipos “cálidos” (si cargas las fuentes en Layout) */
+/* Tipos (si cargas Google Fonts en Layout) */
 .kid-font{
   font-family: "Nunito", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
 }
@@ -52,13 +39,24 @@ section[id]{ scroll-margin-top: 96px; }
   font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
 }
 
-/* Cards premium coherentes */
-.kid-card{
-  border-radius: 32px;
+/* Fondo general (similar al prototipo) */
+.kid-page-bg{
+  background:
+    radial-gradient(1200px 700px at 50% -10%, rgba(59,130,246,.10), transparent 60%),
+    radial-gradient(1100px 650px at 10% 70%, rgba(239,68,68,.08), transparent 60%),
+    radial-gradient(1100px 650px at 95% 70%, rgba(245,158,11,.10), transparent 60%),
+    linear-gradient(180deg, #f4eef0 0%, #f7f3ee 55%, #f4eef0 100%);
+}
+
+/* Panel “folleto/papel” */
+.kid-flyer{
+  border-radius: 26px;
   border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.72);
-  box-shadow: var(--kid-shadow);
-  backdrop-filter: blur(10px);
+  background:
+    radial-gradient(1000px 540px at 50% 0%, rgba(255,255,255,.82), rgba(255,255,255,.62)),
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.66));
+  box-shadow: var(--kid-shadow-lg);
+  overflow: hidden;
 }
 
 /* Botones */
@@ -70,120 +68,26 @@ section[id]{ scroll-margin-top: 96px; }
   border-radius: 14px;
   font-weight: 800;
   border: 1px solid rgba(0,0,0,.06);
-  box-shadow: 0 10px 20px rgba(15,23,42,.10);
+  box-shadow: 0 10px 22px rgba(15,23,42,.12);
   transition: transform 140ms ease, filter 140ms ease, background 140ms ease;
-  will-change: transform;
-}
-.kid-btn:focus-visible{
-  outline: 3px solid rgba(47,116,192,.35);
-  outline-offset: 2px;
 }
 .kid-btn-primary{
   background: var(--kid-orange);
-  color:#fff;
+  color: #fff;
 }
-.kid-btn-primary:hover{ filter:brightness(.98); transform: translateY(-1px); }
+.kid-btn-primary:hover{ transform: translateY(-1px); filter: brightness(.98); }
 .kid-btn-ghost{
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.86);
   color: var(--kid-ink);
 }
-.kid-btn-ghost:hover{ background: rgba(255,255,255,.95); transform: translateY(-1px); }
+.kid-btn-ghost:hover{ transform: translateY(-1px); background: rgba(255,255,255,.96); }
 
-.kid-link{ color: var(--kid-blue); font-weight: 700; }
-
-/* =========================
-   HERO “folleto” con imagen de fondo
-   ========================= */
-
-.kid-hero{
-  position: relative;
-  overflow: hidden;
-  border-radius: 36px;
-  border: 1px solid rgba(17,24,39,.10);
-  box-shadow: 0 22px 70px rgba(17,24,39,.12);
-  background: rgba(255,255,255,.55);
-
-  /* Control fino del encuadre */
-  --hero-x: 72%;
-  --hero-y: 45%;
-
-  min-height: 520px;
+.kid-link{
+  color: var(--kid-blue);
+  font-weight: 700;
 }
 
-/* Ajustes por tamaño (ENCUDRE: aquí está el “paso 1”) */
-@media (max-width: 1024px){
-  .kid-hero{
-    min-height: 560px;
-    --hero-x: 70%;
-    --hero-y: 38%;
-  }
-}
-@media (max-width: 640px){
-  .kid-hero{
-    min-height: 640px;
-    /* En móvil subimos el foco para que se vean caras/sol/molino */
-    --hero-x: 72%;
-    --hero-y: 22%;
-  }
-}
-
-/* Capa imagen */
-.kid-hero-bg{
-  position:absolute;
-  inset:0;
-  background-image: url("/images/hero.jpg");
-  background-size: cover;
-  background-position: var(--hero-x) var(--hero-y);
-  transform: scale(1.02);
-}
-
-/* Scrim: mejora legibilidad del texto */
-.kid-hero-scrim{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.90) 0%,
-      rgba(255,255,255,.82) 46%,
-      rgba(255,255,255,.18) 78%,
-      rgba(255,255,255,0) 100%
-    ),
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
-}
-
-.kid-hero-inner{
-  position: relative;
-  padding: 40px;
-}
-@media (max-width: 640px){
-  .kid-hero-inner{ padding: 20px; }
-}
-
-.kid-hero-grid{
-  display:grid;
-  grid-template-columns: minmax(0, 620px) 1fr;
-  gap: 22px;
-  align-items: start;
-}
-@media (max-width: 1024px){
-  .kid-hero-grid{ grid-template-columns: 1fr; }
-}
-
-/* Caja texto (parecida al folleto) */
-.kid-hero-copy{
-  border-radius: 28px;
-  border: 1px solid rgba(17,24,39,.10);
-  background: rgba(255,255,255,.84);
-  box-shadow: 0 16px 50px rgba(17,24,39,.10);
-  backdrop-filter: blur(12px);
-  padding: 26px;
-}
-@media (max-width: 640px){
-  .kid-hero-copy{ padding: 18px; }
-}
-
-/* Separador acuarela entre secciones */
+/* Separador suave tipo acuarela */
 .kid-sep{
   position: relative;
   height: 34px;
@@ -211,4 +115,261 @@ section[id]{ scroll-margin-top: 96px; }
   height: 1px;
   background: rgba(17,24,39,.10);
   transform: translateY(-50%);
+}
+
+/* =========================
+   HERO “folleto”
+   ========================= */
+.kid-hero{
+  padding: 26px;
+}
+@media (max-width: 640px){
+  .kid-hero{ padding: 18px; }
+}
+
+.kid-hero-shell{
+  border-radius: 22px;
+  border: 1px solid rgba(17,24,39,.10);
+  background: rgba(255,255,255,.58);
+  box-shadow: var(--kid-shadow-md);
+  overflow: hidden;
+}
+
+.kid-hero-grid{
+  display: grid;
+  grid-template-columns: minmax(0, 520px) 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.kid-hero-copy{
+  padding: 26px;
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(10px);
+}
+.kid-hero-kicker{
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,24,39,.10);
+  background: rgba(255,255,255,.78);
+  font-size: 13px;
+  color: #334155;
+  margin-bottom: 14px;
+}
+
+.kid-hero-h1{
+  font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: 54px; /* escritorio parecido al prototipo */
+  margin: 0 0 14px;
+}
+.kid-hero-h1 .red{ color: var(--kid-red); }
+.kid-hero-h1 .blue{ color: var(--kid-blue); }
+
+.kid-hero-lead{
+  color: #475569;
+  font-size: 16px;
+  max-width: 56ch;
+}
+
+.kid-hero-meta{
+  color: #475569;
+  font-size: 13px;
+  margin-top: 14px;
+}
+
+.kid-hero-cta{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+/* Lado derecho: imagen grande (como el folleto) */
+.kid-hero-art{
+  position: relative;
+  background: rgba(255,255,255,.30);
+}
+.kid-hero-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ===== Ajuste de encuadre (IMPORTANTE) ===== */
+  object-position: 70% 35%; /* escritorio: prioriza molino+niños */
+}
+
+/* Ajuste HERO en móvil (PASO 1 que pedías) */
+@media (max-width: 1024px){
+  .kid-hero-grid{ grid-template-columns: 1fr; }
+  .kid-hero-img{
+    height: 340px;
+    object-position: 60% 30%;
+  }
+}
+@media (max-width: 640px){
+  .kid-hero-h1{ font-size: 38px; }
+  .kid-hero-img{
+    height: 300px;
+    object-position: 62% 25%; /* móvil: sube un poco el cielo/sol */
+  }
+}
+
+/* =========================
+   Fila 3 beneficios (tipo folleto)
+   ========================= */
+.kid-features{
+  padding: 0 26px 26px;
+}
+@media (max-width: 640px){
+  .kid-features{ padding: 0 18px 18px; }
+}
+
+.kid-features-shell{
+  border-top: 1px solid rgba(17,24,39,.08);
+  background: rgba(255,255,255,.42);
+  padding: 18px 18px;
+}
+
+.kid-features-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 18px;
+}
+@media (max-width: 900px){
+  .kid-features-grid{ grid-template-columns: 1fr; }
+}
+
+.kid-feature{
+  display:flex;
+  gap: 12px;
+  align-items:flex-start;
+}
+
+.kid-feature-icon{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,24,39,.10);
+  background: rgba(255,255,255,.78);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 18px;
+  box-shadow: var(--kid-shadow-sm);
+}
+
+.kid-feature-title{
+  font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
+  font-weight: 800;
+  margin: 0;
+  font-size: 18px;
+}
+.kid-feature-text{
+  margin-top: 4px;
+  color: #475569;
+  font-size: 13px;
+}
+
+/* =========================
+   Contacto (similar al folleto)
+   ========================= */
+.kid-contact{
+  padding: 22px 26px 28px;
+}
+@media (max-width: 640px){
+  .kid-contact{ padding: 18px 18px 22px; }
+}
+
+.kid-contact-title{
+  font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
+  font-weight: 900;
+  color: var(--kid-blue);
+  text-align:center;
+  font-size: 40px;
+  margin: 8px 0 6px;
+}
+.kid-contact-sub{
+  text-align:center;
+  color: #475569;
+  font-size: 14px;
+  max-width: 70ch;
+  margin: 0 auto 16px;
+}
+
+.kid-contact-bar{
+  border-radius: 18px;
+  border: 1px solid rgba(17,24,39,.10);
+  background: rgba(255,255,255,.70);
+  box-shadow: var(--kid-shadow-md);
+  padding: 14px 16px;
+}
+
+.kid-contact-bar-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items:center;
+}
+@media (max-width: 900px){
+  .kid-contact-bar-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.kid-contact-item{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  color: #334155;
+  font-size: 13px;
+}
+.kid-contact-item strong{ font-weight: 800; }
+
+.kid-chip-ico{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,24,39,.10);
+  background: rgba(255,255,255,.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.kid-contact-bottom{
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+}
+@media (max-width: 900px){
+  .kid-contact-bottom{ grid-template-columns: 1fr; }
+}
+
+.kid-big-card{
+  border-radius: 18px;
+  border: 1px solid rgba(17,24,39,.10);
+  background: rgba(255,255,255,.62);
+  box-shadow: var(--kid-shadow-sm);
+  padding: 16px 16px;
+  display:flex;
+  gap: 12px;
+  align-items:flex-start;
+}
+
+.kid-big-ico{
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  border: 1px solid rgba(17,24,39,.10);
+  background: rgba(255,255,255,.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 22px;
 }

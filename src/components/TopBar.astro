@@ -9,38 +9,37 @@ const hrefAblauf = isHome ? "/#ablauf" : "/konzept";
 const hrefGalerie = isHome ? "/#galerie" : "/";
 const hrefFAQ = isHome ? "/#faq" : "/faq";
 const hrefKontakt = isHome ? "/#kontakt" : "/kontakt";
+
+const email = site.email ?? "info@chupetitos-stommeln.de";
 ---
 
 <header class="sticky top-0 z-50 w-full">
-  <!-- Mini top row (solo teléfono) -->
+  <!-- Top mini row -->
   <div class="border-b bg-white/70 backdrop-blur">
-    <div class="mx-auto max-w-5xl px-4 py-2 flex justify-end text-sm text-slate-600">
+    <div class="mx-auto max-w-5xl px-4 py-2 flex justify-end gap-5 text-sm text-slate-600 kid-font">
       <a class="hover:underline font-semibold" href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a>
+      <span class="hidden sm:inline text-slate-300">|</span>
+      <span class="hidden sm:inline">{email}</span>
     </div>
   </div>
 
   <!-- Main nav -->
-  <div class="border-b bg-white/75 backdrop-blur">
-    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-3">
+  <div class="border-b bg-white/80 backdrop-blur">
+    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-4">
       <a href="/" class="flex items-center gap-3">
-        <!-- Logo horizontal (responsive, no se deforma) -->
+        <!-- Logo horizontal, sin deformar -->
         <img
           src="/images/logo.png"
-          srcset="/images/logo.png 1x, /images/logo@2x.png 2x"
-          sizes="(max-width: 640px) 140px, 200px"
           alt={site.name}
-          class="h-10 w-auto max-w-[140px] sm:max-w-[200px]"
+          class="h-9 sm:h-10 w-auto"
           loading="eager"
-          decoding="async"
         />
-
-        <!-- Tagline solo en desktop -->
-        <span class="hidden sm:inline text-sm font-bold text-slate-500 kid-font">
+        <span class="hidden md:inline text-sm font-bold text-slate-500 kid-font">
           {site.tagline}
         </span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-1 text-sm">
+      <nav class="hidden md:flex items-center gap-1 text-sm kid-font">
         <a class="rounded-lg px-3 py-2 hover:bg-white/80 kid-link" href={hrefKonzept}>Konzept</a>
         <a class="rounded-lg px-3 py-2 hover:bg-white/80 kid-link" href={hrefAblauf}>Tagesablauf</a>
         <a class="rounded-lg px-3 py-2 hover:bg-white/80 kid-link" href={hrefGalerie}>Galerie</a>
@@ -54,7 +53,7 @@ const hrefKontakt = isHome ? "/#kontakt" : "/kontakt";
         </summary>
 
         <div class="absolute right-0 mt-2 w-64 rounded-2xl border bg-white shadow-lg overflow-hidden">
-          <div class="p-2">
+          <div class="p-2 kid-font">
             <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefKonzept}>Konzept</a>
             <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefAblauf}>Tagesablauf</a>
             <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefGalerie}>Galerie</a>
