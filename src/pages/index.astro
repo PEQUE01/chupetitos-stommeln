@@ -11,149 +11,99 @@ import { site } from "../config/site";
   <TopBar />
 
   <main class="mx-auto max-w-5xl px-4">
-    <!-- HERO (watercolor style) -->
-    <section class="pt-12 pb-10">
-      <div class="kid-hero rounded-[32px] border bg-white/70 shadow-sm px-6 py-10 md:px-10 grid gap-10 lg:grid-cols-2 items-center">
-        <!-- Left -->
-        <div class="space-y-6">
-          <p class="inline-flex flex-wrap items-center gap-2 rounded-full border bg-white/70 px-3 py-1 text-sm">
-            <span class="font-extrabold kid-title">{site.tagline}</span>
-            <span class="text-slate-500">· Pulheim (Stommeln)</span>
-          </p>
+    <!-- HERO tipo folleto (ilustración integrada) -->
+    <section class="pt-10 pb-10">
+      <div class="kid-hero">
+        <div class="kid-hero-bg" aria-hidden="true"></div>
+        <div class="kid-hero-scrim" aria-hidden="true"></div>
 
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight kid-title">
-            <span style="color:var(--kid-red)">Liebevolle Betreuung</span><br />
-            <span style="color:var(--kid-blue)">in Deutsch &amp; Spanisch</span>
-          </h1>
-
-          <p class="text-lg text-slate-700 max-w-xl">
-            Willkommen bei {site.name}! Familiäre Kindertagespflege mit klaren Routinen,
-            liebevoller Begleitung und transparenter Kommunikation.
-          </p>
-
-          <p class="text-base text-slate-700">
-            {site.role} <span class="font-semibold">{site.person}</span>
-            <span class="text-slate-400">·</span> {site.hours}
-          </p>
-
-          <div class="flex flex-wrap gap-3 pt-1">
-            <a class="kid-btn kid-btn-primary" href={`tel:${site.phoneRaw}`}>Jetzt anrufen</a>
-            <a class="kid-btn kid-btn-ghost" href="#kontakt">Kontakt (schnell)</a>
-            <a class="kid-btn kid-btn-ghost" href="/kontakt">Standort</a>
-          </div>
-
-          <!-- Trust chips -->
-          <div class="flex flex-wrap gap-2 pt-2">
-            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Kleine Gruppe</span>
-            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Struktur & Rituale</span>
-            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Deutsch & Spanisch</span>
-            <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Elternkommunikation</span>
-          </div>
-
-          <div class="grid gap-2 text-sm text-slate-700 pt-2">
-            <div class="rounded-2xl bg-white/70 border px-4 py-3">
-              <span class="text-slate-600">Adresse: </span>
-              <span class="font-bold">{site.address1}</span>, {site.address2}
-            </div>
-            <div class="rounded-2xl bg-white/70 border px-4 py-3">
-              <span class="text-slate-600">Telefon: </span>
-              <a class="font-bold hover:underline" href={`tel:${site.phoneRaw}`}>
-                {site.phoneDisplay}
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right -->
-        <div class="kid-card rounded-[28px] border bg-white/70 shadow-sm p-4">
-          <div class="rounded-2xl bg-white/70 border p-4">
-            <div class="rounded-2xl overflow-hidden bg-white aspect-[3/2]">
-              <img
-                src="/images/hero.jpg"
-                alt="Illustration Kindertagespflege"
-                class="w-full h-full object-contain"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-          </div>
-
-          <div class="mt-4 grid gap-3">
-            <div class="rounded-2xl bg-white/70 p-4 border">
-              <div class="text-sm text-slate-600">Öffnungszeiten</div>
-              <div class="mt-1 font-semibold">{site.hours}</div>
-            </div>
-
-            <div class="rounded-2xl bg-white/70 p-4 border">
-              <div class="text-sm text-slate-600">Schneller Kontakt</div>
-              <a class="mt-1 inline-block font-semibold hover:underline" href={`tel:${site.phoneRaw}`}>
-                {site.phoneDisplay}
-              </a>
-            </div>
-
-            <div class="rounded-2xl bg-white/70 p-4 border flex items-center gap-3">
-              <img
-                src="/images/logo.png"
-                alt="Chupetitos Stommeln Logo"
-                class="h-10 w-auto max-w-[140px] object-contain"
-                loading="lazy"
-                decoding="async"
-              />
-              <p class="text-sm text-slate-600">
-                Datenschutzfreundlich: keine erkennbaren Kinder auf Fotos/Illustrationen.
+        <div class="kid-hero-inner">
+          <div class="kid-hero-grid">
+            <!-- Copy box -->
+            <div class="kid-hero-copy">
+              <p class="inline-flex flex-wrap items-center gap-2 rounded-full border bg-white/70 px-3 py-1 text-sm">
+                <span class="font-extrabold kid-title">{site.tagline}</span>
+                <span class="text-slate-600">· Pulheim (Stommeln)</span>
               </p>
+
+              <h1 class="mt-4 text-4xl md:text-5xl font-extrabold leading-tight kid-title">
+                <span style="color:var(--kid-red)">Liebevolle Betreuung</span><br />
+                <span style="color:var(--kid-blue)">in Deutsch &amp; Spanisch</span>
+              </h1>
+
+              <p class="mt-4 text-base md:text-lg text-slate-700 max-w-xl">
+                Willkommen bei {site.name}! Familiäre Kindertagespflege mit klaren Routinen, liebevoller Begleitung und transparenter Kommunikation.
+              </p>
+
+              <p class="mt-4 text-sm md:text-base text-slate-700">
+                {site.role} <span class="font-semibold">{site.person}</span>
+                <span class="text-slate-400">·</span> {site.hours}
+              </p>
+
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a class="kid-btn kid-btn-primary" href={`tel:${site.phoneRaw}`}>Jetzt Kontakt aufnehmen</a>
+                <a class="kid-btn kid-btn-ghost" href="#kontakt">Kontakt (schnell)</a>
+              </div>
+
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Kleine Gruppe</span>
+                <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Struktur &amp; Rituale</span>
+                <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Deutsch &amp; Spanisch</span>
+                <span class="rounded-full border bg-white/70 px-3 py-1 text-sm text-slate-700">Elternkommunikation</span>
+              </div>
+
+              <div class="mt-6 grid gap-2 text-sm text-slate-700">
+                <div class="rounded-2xl bg-white/70 border px-4 py-3">
+                  <span class="text-slate-600">Adresse: </span>
+                  <span class="font-bold">{site.address1}</span>, {site.address2}
+                </div>
+                <div class="rounded-2xl bg-white/70 border px-4 py-3">
+                  <span class="text-slate-600">Telefon: </span>
+                  <a class="font-bold hover:underline" href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a>
+                </div>
+              </div>
             </div>
+
+            <!-- Espacio para que la ilustración respire (desktop) -->
+            <div class="hidden lg:block"></div>
           </div>
         </div>
+
+        <!-- accesibilidad: descripción del hero -->
+        <img class="sr-only" src="/images/hero.jpg" alt="Illustration mit Kindern, Windmühle, Sonne und Blumenwiese" />
       </div>
     </section>
 
     <div class="kid-sep"></div>
 
-
-    <!-- VALUE PROPS (premium / illustrated) -->
-    <section class="mt-10">
+    <!-- VALUE PROPS tipo folleto -->
+    <section>
       <div class="kid-card p-8 md:p-10">
         <div class="grid gap-8 md:grid-cols-3">
-          <!-- Card 1 -->
           <div class="flex gap-4">
-            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">
-              🏡
-            </div>
+            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">🏡</div>
             <div>
-              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-blue)">
-                Familiäre Atmosphäre
-              </h2>
+              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-blue)">Familiäre Atmosphäre</h2>
               <p class="mt-1 text-sm text-slate-700">
                 Kleine Gruppe, klare Routinen und individuelle Zuwendung – damit Ihr Kind sich sicher und gesehen fühlt.
               </p>
             </div>
           </div>
 
-          <!-- Card 2 -->
           <div class="flex gap-4">
-            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">
-              🇩🇪🇪🇸
-            </div>
+            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">🇩🇪🇪🇸</div>
             <div>
-              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-red)">
-                Deutsch &amp; Spanisch
-              </h2>
+              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-red)">Deutsch &amp; Spanisch</h2>
               <p class="mt-1 text-sm text-slate-700">
                 Sprache im Alltag – spielerisch durch Rituale, Lieder, Gespräche und Aktivitäten.
               </p>
             </div>
           </div>
 
-          <!-- Card 3 -->
           <div class="flex gap-4">
-            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">
-              🕒
-            </div>
+            <div class="h-12 w-12 shrink-0 rounded-2xl border bg-white/80 flex items-center justify-center text-xl">🕒</div>
             <div>
-              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-orange)">
-                Klare Zeiten &amp; Struktur
-              </h2>
+              <h2 class="text-lg font-extrabold kid-title" style="color:var(--kid-orange)">Klare Zeiten &amp; Struktur</h2>
               <p class="mt-1 text-sm text-slate-700">
                 Ein ruhiger Tagesrhythmus mit festen Übergängen – das gibt Orientierung und Vertrauen.
               </p>
@@ -165,34 +115,64 @@ import { site } from "../config/site";
 
     <div class="kid-sep"></div>
 
+    <!-- KONZEPT (preview para que el link del menú tenga sección en Home) -->
+    <section id="konzept" class="scroll-mt-28">
+      <div class="kid-card p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+          <div class="max-w-2xl">
+            <p class="text-sm font-bold text-slate-500">Konzept</p>
+            <h2 class="mt-2 text-2xl md:text-3xl font-extrabold kid-title" style="color:var(--kid-blue)">
+              Pädagogik mit Nähe und Struktur
+            </h2>
+            <p class="mt-3 text-slate-700">
+              Wir schaffen einen Rahmen, in dem Kinder sich sicher fühlen und in ihrem eigenen Tempo lernen können:
+              Rituale, klare Abläufe, Spiel, Bewegung und Entdecken.
+            </p>
+
+            <ul class="mt-4 grid gap-2 text-sm text-slate-700">
+              <li>• Individuelle Eingewöhnung in enger Abstimmung mit den Eltern</li>
+              <li>• Altersgerechte Förderung, Sprache im Alltag (Deutsch/Spanisch)</li>
+              <li>• Wertschätzende Kommunikation und klare Regeln</li>
+            </ul>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a class="kid-btn kid-btn-primary" href="/konzept">Konzept ansehen</a>
+            <a class="kid-btn kid-btn-ghost" href="#kontakt">Kennenlerntermin</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="kid-sep"></div>
 
     <!-- TAGESABLAUF -->
-    <section id="ablauf" class="pt-12 pb-12 scroll-mt-28">
+    <section id="ablauf" class="scroll-mt-28">
       <div class="kid-card p-8 md:p-10">
-        <p class="text-sm font-medium text-slate-500">Tagesablauf</p>
-        <h2 class="mt-2 text-2xl font-extrabold kid-title" style="color:var(--kid-blue)">
+        <p class="text-sm font-bold text-slate-500">Tagesablauf</p>
+        <h2 class="mt-2 text-2xl md:text-3xl font-extrabold kid-title" style="color:var(--kid-blue)">
           Ein klarer Rhythmus für Sicherheit
         </h2>
 
         <div class="mt-6 grid gap-3">
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex gap-4">
-            <div class="min-w-28 font-semibold">Morgens</div>
+          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+            <div class="min-w-28 font-bold">Morgens</div>
             <div class="text-slate-700">Ankommen, Freispiel, Morgenkreis</div>
           </div>
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex gap-4">
-            <div class="min-w-28 font-semibold">Vormittag</div>
+          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+            <div class="min-w-28 font-bold">Vormittag</div>
             <div class="text-slate-700">Aktivitäten, Basteln, Bewegung, draußen</div>
           </div>
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex gap-4">
-            <div class="min-w-28 font-semibold">Mittag</div>
+          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+            <div class="min-w-28 font-bold">Mittag</div>
             <div class="text-slate-700">Essen, ruhige Übergänge</div>
           </div>
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex gap-4">
-            <div class="min-w-28 font-semibold">Mittagsruhe</div>
+          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+            <div class="min-w-28 font-bold">Mittagsruhe</div>
             <div class="text-slate-700">Ruhezeit / Schlaf (altersgerecht)</div>
           </div>
-          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex gap-4">
-            <div class="min-w-28 font-semibold">Nachmittag</div>
+          <div class="rounded-2xl border bg-white/70 px-5 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+            <div class="min-w-28 font-bold">Nachmittag</div>
             <div class="text-slate-700">Spiel, Abholen, kurze Tagesinfo</div>
           </div>
         </div>
@@ -201,12 +181,11 @@ import { site } from "../config/site";
 
     <div class="kid-sep"></div>
 
-
     <!-- GALERIE -->
-    <section id="galerie" class="pb-12 scroll-mt-28">
+    <section id="galerie" class="scroll-mt-28">
       <div class="kid-card p-8 md:p-10">
-        <p class="text-sm font-medium text-slate-500">Galerie</p>
-        <h2 class="mt-2 text-2xl font-extrabold kid-title" style="color:var(--kid-blue)">
+        <p class="text-sm font-bold text-slate-500">Galerie</p>
+        <h2 class="mt-2 text-2xl md:text-3xl font-extrabold kid-title" style="color:var(--kid-blue)">
           Einblicke in den Alltag
         </h2>
         <p class="mt-3 text-slate-700">
@@ -214,44 +193,43 @@ import { site } from "../config/site";
         </p>
 
         <div class="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 1" loading="lazy" decoding="async" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 2" loading="lazy" decoding="async" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 3" loading="lazy" decoding="async" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 4" loading="lazy" decoding="async" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 5" loading="lazy" decoding="async" />
-          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 6" loading="lazy" decoding="async" />
+          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 1" loading="lazy" />
+          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 2" loading="lazy" />
+          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 3" loading="lazy" />
+          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 4" loading="lazy" />
+          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 5" loading="lazy" />
+          <img class="rounded-2xl border bg-white/70" src="/images/hero.jpg" alt="Galerie 6" loading="lazy" />
         </div>
       </div>
     </section>
 
     <div class="kid-sep"></div>
 
-
-    <!-- FAQ PREVIEW -->
-    <section id="faq" class="pb-12 scroll-mt-28">
+    <!-- FAQ -->
+    <section id="faq" class="scroll-mt-28">
       <div class="kid-card p-8 md:p-10">
-        <p class="text-sm font-medium text-slate-500">FAQ</p>
-        <h2 class="mt-2 text-2xl font-extrabold kid-title" style="color:var(--kid-blue)">
+        <p class="text-sm font-bold text-slate-500">FAQ</p>
+        <h2 class="mt-2 text-2xl md:text-3xl font-extrabold kid-title" style="color:var(--kid-blue)">
           Häufige Fragen
         </h2>
 
         <div class="mt-6 grid gap-3">
           <details class="rounded-2xl border bg-white/70 px-5 py-4">
-            <summary class="cursor-pointer font-semibold">Wie läuft die Eingewöhnung ab?</summary>
+            <summary class="cursor-pointer font-bold">Wie läuft die Eingewöhnung ab?</summary>
             <p class="mt-2 text-sm text-slate-700">
               Schrittweise und individuell – in enger Abstimmung mit den Eltern, damit Ihr Kind Vertrauen und Stabilität aufbauen kann.
             </p>
           </details>
 
           <details class="rounded-2xl border bg-white/70 px-5 py-4">
-            <summary class="cursor-pointer font-semibold">Welche Informationen soll ich beim Anruf bereithalten?</summary>
+            <summary class="cursor-pointer font-bold">Welche Informationen soll ich beim Anruf bereithalten?</summary>
             <p class="mt-2 text-sm text-slate-700">
               Bitte nennen Sie Alter des Kindes, gewünschtes Startdatum und Betreuungsumfang – so können wir schnell prüfen, ob es passt.
             </p>
           </details>
 
           <details class="rounded-2xl border bg-white/70 px-5 py-4">
-            <summary class="cursor-pointer font-semibold">Wo finde ich mehr Details?</summary>
+            <summary class="cursor-pointer font-bold">Wo finde ich mehr Details?</summary>
             <p class="mt-2 text-sm text-slate-700">
               Im Bereich Konzept und auf der Kontaktseite finden Sie weitere Informationen.
             </p>
@@ -264,7 +242,9 @@ import { site } from "../config/site";
       </div>
     </section>
 
-    <!-- KONTAKT STRIP (brochure style) -->
+    <div class="kid-sep"></div>
+
+    <!-- KONTAKT (franja tipo folleto) -->
     <section id="kontakt" class="pb-14 scroll-mt-28">
       <div class="kid-card p-8 md:p-10">
         <div class="text-center">
@@ -278,7 +258,6 @@ import { site } from "../config/site";
 
         <div class="mt-8 rounded-3xl border bg-white/75 p-6 md:p-7 shadow-sm">
           <div class="grid gap-5 md:grid-cols-3 md:items-center">
-            <!-- Adresse -->
             <div class="flex gap-3">
               <div class="h-11 w-11 shrink-0 rounded-2xl border bg-white flex items-center justify-center text-xl">📍</div>
               <div class="text-sm text-slate-700">
@@ -288,7 +267,6 @@ import { site } from "../config/site";
               </div>
             </div>
 
-            <!-- Telefon -->
             <div class="flex gap-3">
               <div class="h-11 w-11 shrink-0 rounded-2xl border bg-white flex items-center justify-center text-xl">📞</div>
               <div class="text-sm text-slate-700">
@@ -300,7 +278,6 @@ import { site } from "../config/site";
               </div>
             </div>
 
-            <!-- CTA -->
             <div class="flex md:justify-end">
               <a class="kid-btn kid-btn-primary w-full md:w-auto" href={`tel:${site.phoneRaw}`}>
                 Jetzt Kontakt aufnehmen
@@ -314,8 +291,5 @@ import { site } from "../config/site";
         </div>
       </div>
     </section>
-    
-    <div class="kid-sep"></div>
-
   </main>
 </Layout>
