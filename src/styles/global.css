@@ -154,3 +154,33 @@ body{
   color: var(--kid-blue);
   font-weight: 700;
 }
+
+/* --- Watercolor separators (premium) --- */
+.kid-sep{
+  position: relative;
+  height: 34px;
+  margin: 28px 0;
+  opacity: .9;
+  pointer-events: none;
+}
+.kid-sep::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: 999px;
+  background:
+    radial-gradient(60% 120% at 15% 50%, rgba(239,68,68,.14), transparent 60%),
+    radial-gradient(60% 120% at 55% 50%, rgba(59,130,246,.14), transparent 60%),
+    radial-gradient(60% 120% at 85% 50%, rgba(245,158,11,.14), transparent 60%);
+  filter: blur(10px);
+}
+.kid-sep::after{
+  content:"";
+  position:absolute;
+  left: 10%;
+  right: 10%;
+  top: 50%;
+  height: 1px;
+  background: rgba(17,24,39,.08);
+  transform: translateY(-50%);
+}
