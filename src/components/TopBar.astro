@@ -1,98 +1,77 @@
 ---
 import { site } from "../config/site";
 
-const showEnglish = false; // lo activamos cuando exista /en
-
 const pathname = Astro.url.pathname;
 const isHome = pathname === "/";
 
-// En Home usamos anchors. En páginas internas usamos rutas normales.
 const hrefKonzept = isHome ? "/#konzept" : "/konzept";
-const hrefAblauf = isHome ? "/#ablauf" : "/konzept";  // fallback: tu página de concepto (puedes crear /ablauf si quieres)
-const hrefGalerie = isHome ? "/#galerie" : "/";        // fallback: home (o crea /galerie)
+const hrefAblauf = isHome ? "/#ablauf" : "/konzept";
+const hrefGalerie = isHome ? "/#galerie" : "/";
 const hrefFAQ = isHome ? "/#faq" : "/faq";
 const hrefKontakt = isHome ? "/#kontakt" : "/kontakt";
 ---
 
-<header class="sticky top-0 z-50 w-full border-b bg-white/70 backdrop-blur">
-  <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-3">
-    <!-- Brand -->
-    <a href="/" class="flex items-center gap-3 font-semibold tracking-tight">
-      <img
-        src="/images/logo.png"
-        alt="Chupetitos Stommeln"
-        class="h-9 w-9 rounded-xl border bg-white p-1"
-        loading="eager"
-      />
-      <span>{site.name}</span>
-      <span class="hidden sm:inline text-sm font-normal text-slate-500">
-        {site.tagline}
-      </span>
-    </a>
+<header class="sticky top-0 z-50 w-full">
+  <!-- Mini top row (solo teléfono) -->
+  <div class="border-b bg-white/70 backdrop-blur">
+    <div class="mx-auto max-w-5xl px-4 py-2 flex justify-end text-sm text-slate-600">
+      <a class="hover:underline font-semibold" href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a>
+    </div>
+  </div>
 
-    <!-- Desktop nav -->
-    <nav class="hidden md:flex items-center gap-1 text-sm">
-      <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href={hrefKonzept}>Konzept</a>
-      <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href={hrefAblauf}>Tagesablauf</a>
-      <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href={hrefGalerie}>Galerie</a>
-      <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href={hrefFAQ}>FAQ</a>
-      <a class="rounded-lg px-3 py-2 hover:bg-slate-50" href={hrefKontakt}>Kontakt</a>
+  <!-- Main nav -->
+  <div class="border-b bg-white/75 backdrop-blur">
+    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-3">
+      <!-- Brand -->
+      <a href="/" class="flex items-center gap-3 font-extrabold kid-title tracking-tight">
+        <!-- Premium responsive logo (no deformation) -->
+        <img
+          src="/images/logo.png"
+          srcset="/images/logo.png 1x, /images/logo@2x.png 2x"
+          alt={site.name}
+          class="h-9 sm:h-10 w-auto max-w-[170px] sm:max-w-[220px] object-contain"
+          loading="eager"
+          decoding="async"
+        />
 
-      <span class="mx-2 h-5 w-px bg-slate-200"></span>
+        <span class="sr-only">{site.name}</span>
 
-      <a
-        class="rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-medium hover:bg-slate-800"
-        href={`tel:${site.phoneRaw}`}
-      >
-        Jetzt anrufen
+        <span class="hidden sm:inline text-sm font-bold text-slate-500 kid-font">
+          {site.tagline}
+        </span>
       </a>
 
-      {showEnglish && (
-        <>
-          <span class="mx-2 h-5 w-px bg-slate-200"></span>
-          <a class="rounded-full border px-3 py-1 hover:bg-slate-50" href="/en/">
-            EN
-          </a>
-        </>
-      )}
-    </nav>
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-1 text-sm">
+        <a class="rounded-lg px-3 py-2 hover:bg-white/80 kid-link" href={hrefKonzept}>Konzept</a>
+        <a class="rounded-lg px-3 py-2 hover:bg-white/80 kid-link" href={hrefAblauf}>Tagesablauf</a>
+        <a class="rounded-lg px-3 py-2 hover:bg-white/80 kid-link" href={hrefGalerie}>Galerie</a>
+        <a class="rounded-lg px-3 py-2 hover:bg-white/80 kid-link" href={hrefFAQ}>FAQ</a>
+        <a class="kid-btn kid-btn-primary ml-2" href={hrefKontakt}>Kontakt</a>
+      </nav>
 
-    <!-- Mobile menu (no JS: details/summary) -->
-    <details class="md:hidden relative">
-      <summary
-        class="list-none cursor-pointer rounded-xl border bg-white px-3 py-2 text-sm font-medium hover:bg-slate-50"
-        aria-label="Menü öffnen"
-      >
-        Menü
-      </summary>
+      <!-- Mobile menu -->
+      <details class="md:hidden relative">
+        <summary class="list-none cursor-pointer kid-btn kid-btn-ghost" aria-label="Menü öffnen">
+          Menü
+        </summary>
 
-      <div class="absolute right-0 mt-2 w-64 rounded-2xl border bg-white shadow-lg overflow-hidden">
-        <div class="p-2">
-          <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefKonzept}>Konzept</a>
-          <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefAblauf}>Tagesablauf</a>
-          <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefGalerie}>Galerie</a>
-          <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefFAQ}>FAQ</a>
-          <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefKontakt}>Kontakt</a>
+        <div class="absolute right-0 mt-2 w-64 rounded-2xl border bg-white shadow-lg overflow-hidden">
+          <div class="p-2">
+            <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefKonzept}>Konzept</a>
+            <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefAblauf}>Tagesablauf</a>
+            <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefGalerie}>Galerie</a>
+            <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefFAQ}>FAQ</a>
+            <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50" href={hrefKontakt}>Kontakt</a>
 
-          <div class="my-2 h-px bg-slate-200"></div>
+            <div class="my-2 h-px bg-slate-200"></div>
 
-          <a
-            class="block rounded-xl bg-slate-900 text-white px-3 py-2 text-sm font-medium hover:bg-slate-800 text-center"
-            href={`tel:${site.phoneRaw}`}
-          >
-            Jetzt anrufen
-          </a>
-
-          {showEnglish && (
-            <>
-              <div class="my-2 h-px bg-slate-200"></div>
-              <a class="block rounded-xl px-3 py-2 text-sm hover:bg-slate-50 text-center" href="/en/">
-                English (EN)
-              </a>
-            </>
-          )}
+            <a class="block kid-btn kid-btn-primary text-center" href={`tel:${site.phoneRaw}`}>
+              Jetzt anrufen
+            </a>
+          </div>
         </div>
-      </div>
-    </details>
+      </details>
+    </div>
   </div>
 </header>

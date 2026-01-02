@@ -79,3 +79,78 @@ html{
 section[id]{
   scroll-margin-top: 96px;
 }
+
+/* =========================
+   Kids / Watercolor theme
+   ========================= */
+:root{
+  --kid-red: #d84a3a;
+  --kid-blue: #2f74c0;
+  --kid-orange: #f39a2e;
+
+  --kid-paper: #fbf3e6;
+  --kid-paper-2: rgba(255,255,255,.75);
+  --kid-ink: #1f2937;
+  --kid-border: rgba(15,23,42,.10);
+
+  --kid-shadow: 0 18px 40px rgba(15,23,42,.10);
+}
+
+/* Fondo tipo “papel” + acuarela suave */
+body{
+  background:
+    radial-gradient(900px 520px at 20% 0%, rgba(47,116,192,.10), transparent 60%),
+    radial-gradient(900px 520px at 80% 100%, rgba(216,74,58,.08), transparent 60%),
+    linear-gradient(180deg, #f2ece5, #f7f1ea);
+}
+
+/* Tipografía más cálida (se activa con el link del Layout) */
+.kid-font{
+  font-family: "Nunito", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+}
+.kid-title{
+  font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
+}
+
+/* Contenedores “papel” */
+.kid-card{
+  background: var(--kid-paper-2);
+  border: 1px solid var(--kid-border);
+  border-radius: 28px;
+  box-shadow: var(--kid-shadow);
+}
+
+.kid-hero{
+  background: linear-gradient(180deg, rgba(191,231,255,.70), rgba(255,255,255,.92));
+  border: 1px solid var(--kid-border);
+  border-radius: 32px;
+  box-shadow: var(--kid-shadow);
+}
+
+/* Botón naranja tipo ejemplo */
+.kid-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-weight: 800;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 10px 20px rgba(15,23,42,.10);
+}
+.kid-btn-primary{
+  background: var(--kid-orange);
+  color: #fff;
+}
+.kid-btn-primary:hover{ filter: brightness(.98); transform: translateY(-1px); transition: 140ms ease; }
+
+.kid-btn-ghost{
+  background: rgba(255,255,255,.8);
+  color: var(--kid-ink);
+}
+.kid-btn-ghost:hover{ background: rgba(255,255,255,.95); transition: 140ms ease; }
+
+.kid-link{
+  color: var(--kid-blue);
+  font-weight: 700;
+}
