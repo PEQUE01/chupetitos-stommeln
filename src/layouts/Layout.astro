@@ -4,16 +4,18 @@ import "../styles/global.css";
 export interface Props {
   title?: string;
   description?: string;
+  lang?: string;
 }
 
 const {
   title = "Chupetitos Stommeln",
   description = "Liebevolle und familiäre Kinderbetreuung in Deutsch & Spanisch in Pulheim-Stommeln.",
+  lang = "de",
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={lang} class="h-full">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,8 +32,9 @@ const {
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
 
-  <body class="min-h-screen kid-page-bg kid-font text-slate-900 antialiased overflow-x-hidden">
-    <main class="kid-panel kid-flyer">
+  <!-- IMPORTANTE: sin “panel” centrado. Fondo + flyer a full width -->
+  <body class="kid-page-bg kid-font text-slate-900 antialiased overflow-x-hidden min-h-screen m-0">
+    <main class="kid-flyer w-full">
       <slot />
     </main>
   </body>

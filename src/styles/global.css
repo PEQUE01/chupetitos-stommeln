@@ -2,321 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ==============
-   Base (paper/watercolor)
-   ============== */
 @layer base {
-  :root {
-    --kid-paper: #fffaf2;
-    --kid-ink: #0f172a;
-
-    /* colores del prototipo (aprox) */
-    --kid-red: #d85a55;
-    --kid-blue: #3f6f9a;
-    --kid-orange: #eb891c;
-
-    /* sombras (tenías referencias a -sm y -md sin definir) */
-    --kid-shadow-sm: 0 10px 28px rgba(15, 23, 42, 0.10);
-    --kid-shadow-md: 0 18px 50px rgba(15, 23, 42, 0.12);
-    --kid-shadow: var(--kid-shadow-md);
+  html,
+  body {
+    height: 100%;
   }
 
   html {
-    font-family: Nunito, ui-sans-serif, system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  /* Evita “saltos” y subrayados raros por defecto */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 }
 
-/* helper (lo usas en <body>) */
-.kid-font {
-  font-family: Nunito, ui-sans-serif, system-ui, sans-serif;
-}
-
-/* Fondo exterior suave tipo papel/acuarela */
-.kid-page-bg {
-  background:
-    radial-gradient(1200px 700px at 20% 0%, rgba(189, 223, 255, 0.25), transparent 60%),
-    radial-gradient(900px 600px at 80% 10%, rgba(255, 210, 210, 0.20), transparent 55%),
-    radial-gradient(900px 600px at 50% 100%, rgba(255, 236, 196, 0.35), transparent 60%),
-    linear-gradient(180deg, #efe9f1 0%, #f3edf5 35%, #efe9f1 100%);
-}
-
-/* ==============
-   Components (panel/cards/buttons)
-   ============== */
 @layer components {
-  /* PANEL PRINCIPAL:
-     - casi full width en desktop (como prototipo integrado)
-     - mantiene un margen mínimo para que no “toque” el borde */
-  .kid-panel {
-    width: min(1760px, calc(100vw - 24px));
-    margin: 12px auto;
-    border-radius: 30px;
-    background: var(--kid-paper);
-    border: 1px solid rgba(17, 24, 39, 0.08);
-    box-shadow: var(--kid-shadow);
-    overflow: hidden;
+  /* Tipografías */
+  .kid-font {
+    font-family: "Nunito", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+      "Apple Color Emoji", "Segoe UI Emoji";
   }
 
-  /* En pantallas muy grandes: permite un poco más */
-  @media (min-width: 1800px) {
-    .kid-panel {
-      width: min(1920px, calc(100vw - 32px));
-    }
+  /* Fondo “papel/acuarela” (más parecido al prototipo) */
+  .kid-page-bg {
+    background-color: #fbf4ea;
+    background-image:
+      radial-gradient(1100px 520px at 50% 0%, rgba(255, 220, 235, 0.55), rgba(255, 255, 255, 0) 62%),
+      radial-gradient(900px 460px at 8% 45%, rgba(195, 232, 255, 0.32), rgba(255, 255, 255, 0) 62%),
+      radial-gradient(900px 460px at 92% 55%, rgba(255, 210, 170, 0.20), rgba(255, 255, 255, 0) 62%),
+      radial-gradient(800px 520px at 50% 100%, rgba(210, 235, 210, 0.18), rgba(255, 255, 255, 0) 60%),
+      /* micro-textura tipo papel (sin imagen externa) */
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.018) 0px,
+        rgba(0, 0, 0, 0.018) 1px,
+        rgba(255, 255, 255, 0) 3px,
+        rgba(255, 255, 255, 0) 6px
+      );
+    background-blend-mode: multiply;
+    background-attachment: fixed;
   }
 
-  /* Móvil: luego lo afinamos, pero que no rompa */
-  @media (max-width: 640px) {
-    .kid-panel {
-      width: calc(100vw - 16px);
-      margin: 8px auto;
-      border-radius: 22px;
-    }
+  /* “Flyer” full width */
+  .kid-flyer {
+    width: 100%;
+    min-height: 100vh;
   }
 
-  .kid-card {
-    @apply rounded-2xl bg-white/65 ring-1 ring-black/5 shadow-sm;
-    backdrop-filter: blur(6px);
+  /* Colores/títulos (estilo prototipo) */
+  .kid-red {
+    color: #d85a5a;
+    font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
   }
 
-  .kid-btn {
-    @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm transition;
-    background: var(--kid-orange);
-  }
-  .kid-btn:hover {
-    filter: brightness(0.96);
-  }
-
-  .kid-navlink {
-    @apply text-sm font-semibold text-slate-600 transition;
-  }
-  .kid-navlink:hover {
-    @apply text-slate-800;
-  }
-  .kid-navlink-active {
-    color: var(--kid-blue);
+  .kid-blue {
+    color: #2f6ea9;
+    font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
   }
 
   .kid-h2 {
-    @apply text-3xl font-extrabold tracking-tight;
-    color: var(--kid-blue);
+    font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
+    @apply text-3xl md:text-4xl font-extrabold text-[#2f6ea9];
   }
 
+  /* Navegación (como prototipo: activa en azul) */
+  .kid-navlink {
+    @apply text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors;
+  }
+
+  .kid-navlink-active {
+    @apply text-[#2f6ea9];
+  }
+
+  /* Botón naranja */
+  .kid-btn {
+    @apply inline-flex items-center justify-center rounded-2xl bg-[#ef8a1f] text-white font-extrabold
+      shadow-[0_12px_25px_rgba(239,138,31,0.25)] hover:brightness-95 active:brightness-90 transition;
+  }
+
+  /* Cards tipo prototipo (por defecto con blanco translúcido) */
+  .kid-card {
+    @apply rounded-2xl bg-white/60 ring-1 ring-black/5 shadow-[0_14px_35px_rgba(15,23,42,0.10)];
+  }
+
+  /* Separador vertical */
   .kid-sep {
-    @apply my-10 h-px w-full;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(15, 23, 42, 0.10) 25%,
-      rgba(15, 23, 42, 0.10) 75%,
-      transparent 100%
-    );
+    @apply h-10 md:h-12;
   }
-
-  .kid-red {
-    color: var(--kid-red);
-  }
-  .kid-blue {
-    color: var(--kid-blue);
-  }
-}
-
-/* =========================================================
-   OVERRIDES PIXEL-PROTOTIPO (Header+Hero+Beneficios)
-   ========================================================= */
-
-/* Panel más “papel” (menos blanco puro) */
-.kid-flyer {
-  background:
-    radial-gradient(1000px 520px at 50% 0%, rgba(255, 255, 255, .70), rgba(255, 255, 255, .45)),
-    linear-gradient(180deg, rgba(255, 248, 235, .92), rgba(255, 248, 235, .86));
-}
-
-/* HERO integrado como en el folleto */
-.kid-hero {
-  padding: 18px 26px 0;
-}
-@media (max-width: 640px) {
-  .kid-hero {
-    padding: 14px 18px 0;
-  }
-}
-
-.kid-hero-shell {
-  position: relative;
-  border-radius: 18px;
-  border: 1px solid rgba(17, 24, 39, .08);
-  box-shadow: var(--kid-shadow-md);
-  overflow: hidden;
-
-  background-image: url("/images/hero.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 72% 32%;
-}
-
-/* Overlay lateral (no lava toda la imagen) */
-.kid-hero-shell::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, .92) 0%,
-    rgba(255, 255, 255, .86) 42%,
-    rgba(255, 255, 255, .42) 58%,
-    rgba(255, 255, 255, 0) 72%
-  );
-  pointer-events: none;
-}
-
-/* Sutil papel en la base para conectar con cards */
-.kid-hero-shell::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 248, 235, 0) 0%,
-    rgba(255, 248, 235, .25) 70%,
-    rgba(255, 248, 235, .55) 100%
-  );
-  pointer-events: none;
-}
-
-.kid-hero-inner {
-  position: relative;
-  padding: 14px 18px 0;
-}
-@media (max-width: 640px) {
-  .kid-hero-inner {
-    padding: 12px 12px 0;
-  }
-}
-
-/* Header centrado como prototipo */
-.kid-header {
-  display: grid;
-  grid-template-columns: 220px 1fr 220px;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 6px 10px;
-}
-@media (max-width: 900px) {
-  .kid-header {
-    grid-template-columns: 1fr auto;
-  }
-}
-
-.kid-brand img {
-  height: 44px;
-  width: auto;
-  display: block;
-}
-
-.kid-nav {
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  font-weight: 800;
-  font-size: 14px;
-  color: #6b7280;
-}
-.kid-nav a {
-  text-decoration: none;
-  color: inherit;
-}
-.kid-nav a:hover {
-  color: #374151;
-}
-.kid-nav .active {
-  color: var(--kid-blue);
-}
-@media (max-width: 900px) {
-  .kid-nav {
-    display: none;
-  }
-}
-
-.kid-header-cta {
-  justify-self: end;
-  padding: 10px 16px;
-  border-radius: 12px;
-}
-
-/* Hero copy */
-.kid-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 520px) 1fr;
-  align-items: center;
-  padding: 10px 6px 14px;
-}
-@media (max-width: 1024px) {
-  .kid-hero-grid {
-    grid-template-columns: 1fr;
-    padding-bottom: 6px;
-  }
-}
-
-.kid-hero-copy {
-  padding: 14px 8px 10px;
-  background: transparent;
-  backdrop-filter: none;
-}
-
-.kid-hero-h1 {
-  font-size: 56px;
-  margin: 0 0 12px;
-}
-@media (max-width: 640px) {
-  .kid-hero-h1 {
-    font-size: 40px;
-  }
-}
-
-.kid-hero-lead {
-  font-size: 15px;
-  line-height: 1.55;
-  color: #475569;
-}
-
-/* Beneficios (cards folleto) */
-.kid-features {
-  padding: 0 6px 16px;
-}
-
-.kid-features-shell {
-  background: rgba(255, 248, 235, .60);
-  border-top: 1px solid rgba(17, 24, 39, .08);
-  padding: 16px 12px;
-}
-
-.kid-feature-card {
-  border-radius: 18px;
-  border: 1px solid rgba(17, 24, 39, .10);
-  background: rgba(255, 255, 255, .62);
-  box-shadow: var(--kid-shadow-sm);
-  padding: 14px 14px;
-  text-align: center;
-}
-
-.kid-feature-pic {
-  width: 120px;
-  height: 54px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto 6px;
-}
-
-.kid-feature-title {
-  font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
-  font-weight: 900;
-  color: var(--kid-blue);
-  margin: 0;
-  font-size: 18px;
-}
-
-.kid-feature-text {
-  margin-top: 4px;
-  color: #6b7280;
-  font-size: 13px;
 }
