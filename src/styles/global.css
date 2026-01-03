@@ -15,15 +15,20 @@
     --kid-blue: #3f6f9a;
     --kid-orange: #eb891c;
 
-    /* sombras consistentes (ANTES faltaban -sm y -md) */
-    --kid-shadow-sm: 0 10px 24px rgba(15, 23, 42, 0.08);
+    /* sombras (tenías referencias a -sm y -md sin definir) */
+    --kid-shadow-sm: 0 10px 28px rgba(15, 23, 42, 0.10);
     --kid-shadow-md: 0 18px 50px rgba(15, 23, 42, 0.12);
-    --kid-shadow-lg: 0 26px 80px rgba(15, 23, 42, 0.14);
+    --kid-shadow: var(--kid-shadow-md);
   }
 
   html {
     font-family: Nunito, ui-sans-serif, system-ui, sans-serif;
   }
+}
+
+/* helper (lo usas en <body>) */
+.kid-font {
+  font-family: Nunito, ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Fondo exterior suave tipo papel/acuarela */
@@ -39,41 +44,32 @@
    Components (panel/cards/buttons)
    ============== */
 @layer components {
-  /* (opcional) si quieres forzar fuente por clase */
-  .kid-font {
-    font-family: Nunito, ui-sans-serif, system-ui, sans-serif;
-  }
-
-  /* Panel principal:
-     - MÁS ancho en desktop (menos bordes laterales)
-     - margen exterior pequeño como “flyer” del prototipo
-     - fondo papel + borde + sombra */
+  /* PANEL PRINCIPAL:
+     - casi full width en desktop (como prototipo integrado)
+     - mantiene un margen mínimo para que no “toque” el borde */
   .kid-panel {
-    width: min(1700px, calc(100vw - 24px));
+    width: min(1760px, calc(100vw - 24px));
     margin: 12px auto;
-    border-radius: 34px;
+    border-radius: 30px;
+    background: var(--kid-paper);
     border: 1px solid rgba(17, 24, 39, 0.08);
-    box-shadow: var(--kid-shadow-lg);
+    box-shadow: var(--kid-shadow);
     overflow: hidden;
-    background:
-      radial-gradient(1000px 520px at 50% 0%, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.45)),
-      linear-gradient(180deg, rgba(255, 248, 235, 0.94), rgba(255, 248, 235, 0.88));
   }
 
-  /* En pantallas MUY grandes: deja aún menos “marco” */
+  /* En pantallas muy grandes: permite un poco más */
   @media (min-width: 1800px) {
     .kid-panel {
-      width: min(1840px, calc(100vw - 28px));
-      margin: 12px auto;
+      width: min(1920px, calc(100vw - 32px));
     }
   }
 
-  /* En móvil/tablet ya afinaremos luego, pero que no rompa */
+  /* Móvil: luego lo afinamos, pero que no rompa */
   @media (max-width: 640px) {
     .kid-panel {
-      width: calc(100vw - 14px);
+      width: calc(100vw - 16px);
       margin: 8px auto;
-      border-radius: 26px;
+      border-radius: 22px;
     }
   }
 
@@ -116,26 +112,39 @@
     );
   }
 
-  .kid-red { color: var(--kid-red); }
-  .kid-blue { color: var(--kid-blue); }
+  .kid-red {
+    color: var(--kid-red);
+  }
+  .kid-blue {
+    color: var(--kid-blue);
+  }
 }
 
 /* =========================================================
    OVERRIDES PIXEL-PROTOTIPO (Header+Hero+Beneficios)
    ========================================================= */
 
+/* Panel más “papel” (menos blanco puro) */
+.kid-flyer {
+  background:
+    radial-gradient(1000px 520px at 50% 0%, rgba(255, 255, 255, .70), rgba(255, 255, 255, .45)),
+    linear-gradient(180deg, rgba(255, 248, 235, .92), rgba(255, 248, 235, .86));
+}
+
 /* HERO integrado como en el folleto */
 .kid-hero {
   padding: 18px 26px 0;
 }
 @media (max-width: 640px) {
-  .kid-hero { padding: 14px 18px 0; }
+  .kid-hero {
+    padding: 14px 18px 0;
+  }
 }
 
 .kid-hero-shell {
   position: relative;
   border-radius: 18px;
-  border: 1px solid rgba(17, 24, 39, 0.08);
+  border: 1px solid rgba(17, 24, 39, .08);
   box-shadow: var(--kid-shadow-md);
   overflow: hidden;
 
@@ -145,22 +154,22 @@
   background-position: 72% 32%;
 }
 
-/* Overlay lateral (no “lava” toda la imagen) */
+/* Overlay lateral (no lava toda la imagen) */
 .kid-hero-shell::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.92) 0%,
-    rgba(255, 255, 255, 0.86) 42%,
-    rgba(255, 255, 255, 0.42) 58%,
+    rgba(255, 255, 255, .92) 0%,
+    rgba(255, 255, 255, .86) 42%,
+    rgba(255, 255, 255, .42) 58%,
     rgba(255, 255, 255, 0) 72%
   );
   pointer-events: none;
 }
 
-/* Sutil “papel” en la base */
+/* Sutil papel en la base para conectar con cards */
 .kid-hero-shell::after {
   content: "";
   position: absolute;
@@ -168,8 +177,8 @@
   background: linear-gradient(
     180deg,
     rgba(255, 248, 235, 0) 0%,
-    rgba(255, 248, 235, 0.25) 70%,
-    rgba(255, 248, 235, 0.55) 100%
+    rgba(255, 248, 235, .25) 70%,
+    rgba(255, 248, 235, .55) 100%
   );
   pointer-events: none;
 }
@@ -179,7 +188,9 @@
   padding: 14px 18px 0;
 }
 @media (max-width: 640px) {
-  .kid-hero-inner { padding: 12px 12px 0; }
+  .kid-hero-inner {
+    padding: 12px 12px 0;
+  }
 }
 
 /* Header centrado como prototipo */
@@ -191,7 +202,9 @@
   padding: 6px 6px 10px;
 }
 @media (max-width: 900px) {
-  .kid-header { grid-template-columns: 1fr auto; }
+  .kid-header {
+    grid-template-columns: 1fr auto;
+  }
 }
 
 .kid-brand img {
@@ -208,12 +221,20 @@
   font-size: 14px;
   color: #6b7280;
 }
-.kid-nav a { text-decoration: none; color: inherit; }
-.kid-nav a:hover { color: #374151; }
-.kid-nav .active { color: var(--kid-blue); }
-
+.kid-nav a {
+  text-decoration: none;
+  color: inherit;
+}
+.kid-nav a:hover {
+  color: #374151;
+}
+.kid-nav .active {
+  color: var(--kid-blue);
+}
 @media (max-width: 900px) {
-  .kid-nav { display: none; }
+  .kid-nav {
+    display: none;
+  }
 }
 
 .kid-header-cta {
@@ -222,7 +243,7 @@
   border-radius: 12px;
 }
 
-/* HERO copy */
+/* Hero copy */
 .kid-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 520px) 1fr;
@@ -230,7 +251,10 @@
   padding: 10px 6px 14px;
 }
 @media (max-width: 1024px) {
-  .kid-hero-grid { grid-template-columns: 1fr; padding-bottom: 6px; }
+  .kid-hero-grid {
+    grid-template-columns: 1fr;
+    padding-bottom: 6px;
+  }
 }
 
 .kid-hero-copy {
@@ -244,7 +268,9 @@
   margin: 0 0 12px;
 }
 @media (max-width: 640px) {
-  .kid-hero-h1 { font-size: 40px; }
+  .kid-hero-h1 {
+    font-size: 40px;
+  }
 }
 
 .kid-hero-lead {
@@ -253,21 +279,21 @@
   color: #475569;
 }
 
-/* Beneficios */
+/* Beneficios (cards folleto) */
 .kid-features {
   padding: 0 6px 16px;
 }
 
 .kid-features-shell {
-  background: rgba(255, 248, 235, 0.60);
-  border-top: 1px solid rgba(17, 24, 39, 0.08);
+  background: rgba(255, 248, 235, .60);
+  border-top: 1px solid rgba(17, 24, 39, .08);
   padding: 16px 12px;
 }
 
 .kid-feature-card {
   border-radius: 18px;
-  border: 1px solid rgba(17, 24, 39, 0.10);
-  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(17, 24, 39, .10);
+  background: rgba(255, 255, 255, .62);
   box-shadow: var(--kid-shadow-sm);
   padding: 14px 14px;
   text-align: center;
@@ -288,6 +314,7 @@
   margin: 0;
   font-size: 18px;
 }
+
 .kid-feature-text {
   margin-top: 4px;
   color: #6b7280;
