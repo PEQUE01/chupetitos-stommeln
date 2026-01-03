@@ -30,12 +30,20 @@ const {
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
 
-  <body class="min-h-screen kid-page-bg kid-font text-slate-900 antialiased">
-    <div class="px-4 py-8 md:py-10">
-      <!-- Tu CSS actual usa .kid-flyer -->
-      <main class="kid-flyer mx-auto max-w-[1100px]">
-        <slot />
-      </main>
-    </div>
-  </body>
-</html>
+  <body class="min-h-screen kid-page-bg kid-font text-slate-900 antialiased overflow-x-hidden">
+  <div class="px-2 py-3 sm:px-3 sm:py-5 lg:px-4 lg:py-6">
+    <main class="kid-panel w-full max-w-none">
+      <slot />
+    </main>
+  </div>
+</body>
+
+<body class="min-h-screen kid-page-bg kid-font text-slate-900 antialiased overflow-x-hidden">
+  <div class="px-2 py-3 sm:px-3 sm:py-5 lg:px-4 lg:py-6">
+    <main class="kid-panel w-full max-w-none">
+      <slot />
+    </main>
+  </div>
+</body>
+
+

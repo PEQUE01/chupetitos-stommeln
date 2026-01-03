@@ -36,15 +36,16 @@
    Components (panel/cards/buttons)
    ============== */
 @layer components {
-  .kid-panel {
-    @apply relative mx-auto max-w-[1100px] overflow-hidden rounded-[28px] ring-1 ring-black/5;
-    background:
-      radial-gradient(700px 320px at 15% 0%, rgba(120, 190, 255, 0.18), transparent 60%),
-      radial-gradient(800px 360px at 85% 10%, rgba(255, 190, 190, 0.16), transparent 60%),
-      radial-gradient(900px 500px at 50% 100%, rgba(255, 224, 170, 0.22), transparent 65%),
-      var(--kid-paper);
-    box-shadow: var(--kid-shadow);
-  }
+  .kid-panel{
+  border-radius: 26px;
+  border: 1px solid rgba(17,24,39,.10);
+  background:
+    radial-gradient(1000px 540px at 50% 0%, rgba(255,255,255,.82), rgba(255,255,255,.62)),
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.66));
+  box-shadow: var(--kid-shadow-lg);
+  overflow: hidden;
+}
+
 
   .kid-card {
     @apply rounded-2xl bg-white/65 ring-1 ring-black/5 shadow-sm;

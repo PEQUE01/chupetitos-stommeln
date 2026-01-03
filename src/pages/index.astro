@@ -6,99 +6,81 @@ import Layout from "../layouts/Layout.astro";
   <div id="top" class="px-6 py-6 md:px-10 md:py-8">
     <!-- HERO + Header integrado (como el prototipo) -->
     <section class="relative overflow-hidden rounded-[22px] ring-1 ring-black/10 shadow-[0_18px_55px_rgba(15,23,42,0.12)]">
-      <!-- Fondo ilustración -->
-      <div class="absolute inset-0 bg-[url('/images/hero.jpg')] bg-cover bg-[position:72%_35%]"></div>
+  <!-- Fondo ilustración a TODO el HERO (como prototipo) -->
+  <div class="absolute inset-0 bg-[url('/images/hero.jpg')] bg-cover bg-[position:74%_38%]"></div>
 
-      <!-- Overlay lateral (deja la derecha viva) -->
-      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/0"></div>
+  <!-- Overlay “papel” (hace legible el texto sin lavar la imagen) -->
+  <div class="absolute inset-0 bg-gradient-to-r from-[rgba(255,247,234,0.94)] via-[rgba(255,247,234,0.68)] to-[rgba(255,247,234,0.10)]"></div>
 
-      <!-- Contenido -->
-      <div class="relative px-6 pt-5 md:px-8 md:pt-6">
-        <!-- Header dentro del HERO -->
-        <header class="grid items-center gap-4 md:grid-cols-[220px_1fr_220px]">
-          <a href="#top" class="flex items-center">
-            <img src="/images/logo.png" alt="Chupetitos Stommeln" class="h-11 w-auto" />
-          </a>
+  <!-- Contenido -->
+  <div class="relative px-6 pt-5 md:px-8 md:pt-6">
+    <!-- Header -->
+    <header class="grid items-center gap-4 md:grid-cols-[240px_1fr_220px]">
+      <!-- Logo con “papelito” detrás, como el prototipo -->
+      <a href="#top" class="inline-flex items-center rounded-lg bg-white/55 px-3 py-2 ring-1 ring-black/5 shadow-sm">
+        <img src="/images/logo.png" alt="Chupetitos Stommeln" class="h-10 w-auto" />
+      </a>
 
-          <nav class="hidden items-center justify-center gap-6 md:flex">
-            <a class="kid-navlink kid-navlink-active" href="#top">Startseite</a>
-            <a class="kid-navlink" href="#uberuns">Über uns</a>
-            <a class="kid-navlink" href="#betreuung">Betreuung</a>
-            <a class="kid-navlink" href="#infos">Infos</a>
-            <a class="kid-navlink flex items-center gap-2" href="#kontakt">
-              <span aria-hidden="true">✉</span>
-              Kontakt
-            </a>
-          </nav>
+      <nav class="hidden items-center justify-center gap-6 md:flex">
+        <a class="kid-navlink kid-navlink-active" href="#top">Startseite</a>
+        <a class="kid-navlink" href="#uberuns">Über uns</a>
+        <a class="kid-navlink" href="#betreuung">Betreuung</a>
+        <a class="kid-navlink" href="#infos">Infos</a>
+        <a class="kid-navlink flex items-center gap-2" href="#kontakt">
+          <span aria-hidden="true">✉</span>
+          Kontakt
+        </a>
+      </nav>
 
-          <div class="flex justify-end">
-            <a class="kid-btn px-5 py-2.5" href="#kontakt">Kontakt</a>
-          </div>
-        </header>
+      <div class="flex justify-end">
+        <a class="kid-btn px-5 py-2.5" href="#kontakt">Kontakt</a>
+      </div>
+    </header>
 
-        <!-- Copy del hero -->
-        <div class="grid gap-10 pb-6 pt-5 md:grid-cols-2 md:items-center md:pb-8 md:pt-7">
-          <div class="max-w-[520px]">
-            <h1 class="font-extrabold leading-[1.05] tracking-tight text-[44px] md:text-[56px]">
-              <span class="kid-red">Liebevolle Betreuung</span><br />
-              <span class="kid-blue">in Deutsch &amp; Spanisch</span>
-            </h1>
+    <!-- HERO copy -->
+    <div class="grid gap-10 pb-7 pt-6 md:grid-cols-[560px_1fr] md:items-center md:pb-8 md:pt-7">
+      <div>
+        <h1 class="font-extrabold leading-[1.04] tracking-tight text-[40px] md:text-[46px] lg:text-[48px]">
+          <span class="kid-red md:whitespace-nowrap">Liebevolle Betreuung</span><br />
+          <span class="kid-blue">in Deutsch &amp; Spanisch</span>
+        </h1>
 
-            <p class="mt-4 max-w-[60ch] text-sm leading-relaxed text-slate-700 md:text-[15px]">
-              Willkommen bei Chupetitos Stommeln!<br />
-              Wir bieten herzliche und familiäre Kinderbetreuung in deutscher und spanischer Sprache
-              für Kinder von 1 bis 3 Jahren im schönen Pulheim-Stommeln.
-            </p>
+        <p class="mt-4 max-w-[62ch] text-sm leading-relaxed text-slate-700 md:text-[15px]">
+          Willkommen bei Chupetitos Stommeln!<br />
+          Wir bieten herzliche und familiäre Kinderbetreuung in deutscher und spanischer Sprache
+          für Kinder von 1 bis 3 Jahren im schönen Pulheim-Stommeln.
+        </p>
 
-            <a href="#kontakt" class="kid-btn mt-5 inline-flex px-6 py-3">Jetzt Kontakt aufnehmen</a>
-          </div>
-
-          <!-- Columna vacía: la imagen vive en el background -->
-          <div class="hidden md:block"></div>
-        </div>
+        <a href="#kontakt" class="kid-btn mt-5 inline-flex px-6 py-3">Jetzt Kontakt aufnehmen</a>
       </div>
 
-      <!-- Beneficios integrados (tira inferior como folleto) -->
-      <div class="relative border-t border-black/10 bg-white/40 px-6 py-5 md:px-8 md:py-6">
-        <div class="grid gap-4 md:grid-cols-3">
-          <div class="kid-card px-6 py-5 text-center">
-            <img
-              src="/images/icons/home.png"
-              alt=""
-              aria-hidden="true"
-              class="mx-auto mb-2 h-12 w-auto object-contain"
-              loading="lazy"
-            />
-            <div class="font-extrabold kid-blue">Familiäre Atmosphäre</div>
-            <div class="mt-1 text-xs text-slate-600">Ein liebevolles Umfeld für Ihr Kind</div>
-          </div>
+      <div class="hidden md:block"></div>
+    </div>
+  </div>
 
-          <div class="kid-card px-6 py-5 text-center">
-            <img
-              src="/images/icons/flags.png"
-              alt=""
-              aria-hidden="true"
-              class="mx-auto mb-2 h-12 w-auto object-contain"
-              loading="lazy"
-            />
-            <div class="font-extrabold kid-blue">Deutsch &amp; Spanisch</div>
-            <div class="mt-1 text-xs text-slate-600">Bilinguale Betreuung für die Kleinsten</div>
-          </div>
-
-          <div class="kid-card px-6 py-5 text-center">
-            <img
-              src="/images/icons/clock.png"
-              alt=""
-              aria-hidden="true"
-              class="mx-auto mb-2 h-12 w-auto object-contain"
-              loading="lazy"
-            />
-            <div class="font-extrabold kid-blue">Flexible Betreuungszeiten</div>
-            <div class="mt-1 text-xs text-slate-600">Montag – Freitag: 7:45 – 15:45 Uhr</div>
-          </div>
-        </div>
+  <!-- Beneficios: van dentro del HERO (se ve la acuarela detrás, como en prototipo) -->
+  <div class="relative border-t border-black/10 bg-white/25 px-6 py-5 backdrop-blur-[1px] md:px-8 md:py-6">
+    <div class="grid gap-4 md:grid-cols-3">
+      <div class="kid-card bg-white/60 px-6 py-4 text-center">
+        <img src="/images/icons/home.png" alt="" aria-hidden="true" class="mx-auto mb-2 h-14 w-auto object-contain" loading="lazy" />
+        <div class="font-extrabold kid-blue">Familiäre Atmosphäre</div>
+        <div class="mt-1 text-xs text-slate-600">Ein liebevolles Umfeld für Ihr Kind</div>
       </div>
-    </section>
+
+      <div class="kid-card bg-white/60 px-6 py-4 text-center">
+        <img src="/images/icons/flags.png" alt="" aria-hidden="true" class="mx-auto mb-2 h-14 w-auto object-contain" loading="lazy" />
+        <div class="font-extrabold kid-blue">Deutsch &amp; Spanisch</div>
+        <div class="mt-1 text-xs text-slate-600">Bilinguale Betreuung für die Kleinsten</div>
+      </div>
+
+      <div class="kid-card bg-white/60 px-6 py-4 text-center">
+        <img src="/images/icons/clock.png" alt="" aria-hidden="true" class="mx-auto mb-2 h-14 w-auto object-contain" loading="lazy" />
+        <div class="font-extrabold kid-blue">Flexible Betreuungszeiten</div>
+        <div class="mt-1 text-xs text-slate-600">Montag – Freitag: 7:45 – 15:45 Uhr</div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <div class="kid-sep"></div>
 
