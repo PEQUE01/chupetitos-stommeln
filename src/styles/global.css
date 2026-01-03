@@ -15,7 +15,13 @@
     --kid-blue: #3f6f9a;
     --kid-orange: #eb891c;
 
-    --kid-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+    /* sombras (añadimos sm/md/lg para que no falte ninguna) */
+    --kid-shadow-sm: 0 10px 24px rgba(15, 23, 42, 0.10);
+    --kid-shadow-md: 0 18px 50px rgba(15, 23, 42, 0.12);
+    --kid-shadow-lg: 0 24px 80px rgba(15, 23, 42, 0.14);
+
+    /* compat: si ya usabas --kid-shadow, lo mantenemos */
+    --kid-shadow: var(--kid-shadow-md);
   }
 
   html {
@@ -36,16 +42,40 @@
    Components (panel/cards/buttons)
    ============== */
 @layer components {
-  .kid-panel{
-  border-radius: 26px;
-  border: 1px solid rgba(17,24,39,.10);
-  background:
-    radial-gradient(1000px 540px at 50% 0%, rgba(255,255,255,.82), rgba(255,255,255,.62)),
-    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.66));
-  box-shadow: var(--kid-shadow-lg);
-  overflow: hidden;
-}
+  /* Panel principal = "flyer" completo (como prototipo) */
+  .kid-panel {
+    /* ancho grande en desktop, con márgenes pequeños */
+    width: min(1720px, calc(100vw - 32px));
+    margin: 16px auto;
 
+    /* look “papel” */
+    border-radius: 28px;
+    border: 1px solid rgba(17, 24, 39, 0.08);
+    box-shadow: var(--kid-shadow-lg);
+    overflow: hidden;
+
+    /* fondo tipo papel crema (muy similar al folleto) */
+    background:
+      radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.72), rgba(255,255,255,.40)),
+      linear-gradient(180deg, rgba(255,248,235,.94), rgba(255,248,235,.86));
+  }
+
+  /* En pantallas MUY grandes, permitimos un poco más */
+  @media (min-width: 1800px) {
+    .kid-panel {
+      width: min(1840px, calc(100vw - 48px));
+      margin: 18px auto;
+    }
+  }
+
+  /* Móvil ya lo afinaremos luego, pero que no rompa */
+  @media (max-width: 640px) {
+    .kid-panel {
+      width: calc(100vw - 16px);
+      margin: 10px auto;
+      border-radius: 22px;
+    }
+  }
 
   .kid-card {
     @apply rounded-2xl bg-white/65 ring-1 ring-black/5 shadow-sm;
@@ -77,59 +107,58 @@
 
   .kid-sep {
     @apply my-10 h-px w-full;
-    background: linear-gradient(90deg, transparent 0%, rgba(15, 23, 42, 0.10) 25%, rgba(15, 23, 42, 0.10) 75%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(15, 23, 42, 0.10) 25%,
+      rgba(15, 23, 42, 0.10) 75%,
+      transparent 100%
+    );
   }
 
-  .kid-red {
-    color: var(--kid-red);
-  }
-  .kid-blue {
-    color: var(--kid-blue);
-  }
+  .kid-red { color: var(--kid-red); }
+  .kid-blue { color: var(--kid-blue); }
 }
 
 /* =========================================================
    OVERRIDES PIXEL-PROTOTIPO (Header+Hero+Beneficios)
-   Pegar al FINAL de global.css
    ========================================================= */
 
-/* Panel más “papel” (menos blanco puro) */
-.kid-flyer{
+/* (Opcional) clase extra si la usas en algún contenedor */
+.kid-flyer {
   background:
     radial-gradient(1000px 520px at 50% 0%, rgba(255,255,255,.70), rgba(255,255,255,.45)),
     linear-gradient(180deg, rgba(255,248,235,.92), rgba(255,248,235,.86));
 }
 
-/* HERO integrado como en el folleto:
-   - usa hero.jpg como fondo
-   - overlay SOLO a la izquierda (para texto)
-   - el header vive encima del hero, como en el prototipo */
-.kid-hero{
+/* HERO integrado:
+   - fondo hero.jpg
+   - overlay SOLO izquierda
+*/
+.kid-hero {
   padding: 18px 26px 0;
 }
-@media (max-width: 640px){
-  .kid-hero{ padding: 14px 18px 0; }
+@media (max-width: 640px) {
+  .kid-hero { padding: 14px 18px 0; }
 }
 
-.kid-hero-shell{
+.kid-hero-shell {
   position: relative;
   border-radius: 18px;
   border: 1px solid rgba(17,24,39,.08);
   box-shadow: var(--kid-shadow-md);
   overflow: hidden;
 
-  /* Fondo hero (más vivo) */
   background-image: url("/images/hero.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 72% 32%;
 }
 
-/* Overlay lateral (no “lava” toda la imagen) */
-.kid-hero-shell::before{
-  content:"";
-  position:absolute;
-  inset:0;
+.kid-hero-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     90deg,
     rgba(255,255,255,.92) 0%,
@@ -137,141 +166,65 @@
     rgba(255,255,255,.42) 58%,
     rgba(255,255,255,0) 72%
   );
-  pointer-events:none;
+  pointer-events: none;
 }
 
-/* Sutil “papel” en la base para que conecte con las cards */
-.kid-hero-shell::after{
-  content:"";
-  position:absolute;
-  inset:0;
+.kid-hero-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     180deg,
     rgba(255,248,235,0) 0%,
     rgba(255,248,235,.25) 70%,
     rgba(255,248,235,.55) 100%
   );
-  pointer-events:none;
+  pointer-events: none;
 }
 
-/* Todo el contenido por encima de overlays */
-.kid-hero-inner{
+.kid-hero-inner {
   position: relative;
   padding: 14px 18px 0;
 }
-@media (max-width: 640px){
-  .kid-hero-inner{ padding: 12px 12px 0; }
-}
-
-/* Header centrado como en el prototipo (logo izq, nav centro, botón der) */
-.kid-header{
-  display:grid;
-  grid-template-columns: 220px 1fr 220px;
-  align-items:center;
-  gap: 12px;
-  padding: 6px 6px 10px;
-}
-@media (max-width: 900px){
-  .kid-header{
-    grid-template-columns: 1fr auto;
-  }
-}
-
-.kid-brand img{
-  height: 44px;
-  width: auto;
-  display:block;
-}
-
-.kid-nav{
-  display:flex;
-  justify-content:center;
-  gap: 22px;
-  font-weight: 800;
-  font-size: 14px;
-  color: #6b7280;
-}
-.kid-nav a{ text-decoration:none; color: inherit; }
-.kid-nav a:hover{ color: #374151; }
-.kid-nav .active{ color: var(--kid-blue); }
-
-@media (max-width: 900px){
-  .kid-nav{ display:none; }
-}
-
-.kid-header-cta{
-  justify-self:end;
-  padding: 10px 16px;
-  border-radius: 12px;
-}
-
-/* HERO copy como prototipo */
-.kid-hero-grid{
-  display:grid;
-  grid-template-columns: minmax(0, 520px) 1fr;
-  align-items: center;
-  padding: 10px 6px 14px;
-}
-@media (max-width: 1024px){
-  .kid-hero-grid{ grid-template-columns: 1fr; padding-bottom: 6px; }
-}
-
-.kid-hero-copy{
-  padding: 14px 8px 10px;
-  background: transparent; /* ya lo hace el overlay lateral */
-  backdrop-filter: none;
-}
-
-.kid-hero-h1{
-  font-size: 56px;
-  margin: 0 0 12px;
-}
-@media (max-width: 640px){
-  .kid-hero-h1{ font-size: 40px; }
-}
-
-.kid-hero-lead{
-  font-size: 15px;
-  line-height: 1.55;
-  color: #475569;
+@media (max-width: 640px) {
+  .kid-hero-inner { padding: 12px 12px 0; }
 }
 
 /* Beneficios (cards “folleto”) */
-.kid-features{
-  padding: 0 6px 16px;
-}
+.kid-features { padding: 0 6px 16px; }
 
-.kid-features-shell{
+.kid-features-shell {
   background: rgba(255,248,235,.60);
   border-top: 1px solid rgba(17,24,39,.08);
   padding: 16px 12px;
 }
 
-.kid-feature-card{
+.kid-feature-card {
   border-radius: 18px;
   border: 1px solid rgba(17,24,39,.10);
   background: rgba(255,255,255,.62);
   box-shadow: var(--kid-shadow-sm);
   padding: 14px 14px;
-  text-align:center;
+  text-align: center;
 }
 
-.kid-feature-pic{
+.kid-feature-pic {
   width: 120px;
   height: 54px;
   object-fit: contain;
-  display:block;
+  display: block;
   margin: 0 auto 6px;
 }
 
-.kid-feature-title{
+.kid-feature-title {
   font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
   font-weight: 900;
   color: var(--kid-blue);
   margin: 0;
   font-size: 18px;
 }
-.kid-feature-text{
+
+.kid-feature-text {
   margin-top: 4px;
   color: #6b7280;
   font-size: 13px;
