@@ -16,7 +16,6 @@
     margin: 0;
   }
 
-  /* Evita “saltos” y subrayados raros por defecto */
   a {
     color: inherit;
     text-decoration: none;
@@ -36,7 +35,7 @@
       "Apple Color Emoji", "Segoe UI Emoji";
   }
 
-  /* Fondo “papel/acuarela” (más parecido al prototipo) */
+  /* Fondo papel/acuarela */
   .kid-page-bg {
     background-color: #fbf4ea;
     background-image:
@@ -44,25 +43,53 @@
       radial-gradient(900px 460px at 8% 45%, rgba(195, 232, 255, 0.32), rgba(255, 255, 255, 0) 62%),
       radial-gradient(900px 460px at 92% 55%, rgba(255, 210, 170, 0.20), rgba(255, 255, 255, 0) 62%),
       radial-gradient(800px 520px at 50% 100%, rgba(210, 235, 210, 0.18), rgba(255, 255, 255, 0) 60%),
-      /* micro-textura tipo papel (sin imagen externa) */
       repeating-linear-gradient(
         0deg,
-        rgba(0, 0, 0, 0.018) 0px,
-        rgba(0, 0, 0, 0.018) 1px,
+        rgba(0, 0, 0, 0.015) 0px,
+        rgba(0, 0, 0, 0.015) 1px,
         rgba(255, 255, 255, 0) 3px,
-        rgba(255, 255, 255, 0) 6px
+        rgba(255, 255, 255, 0) 7px
       );
     background-blend-mode: multiply;
-    background-attachment: fixed;
   }
 
-  /* “Flyer” full width */
+  /* Flyyer */
   .kid-flyer {
     width: 100%;
     min-height: 100vh;
   }
 
-  /* Colores/títulos (estilo prototipo) */
+  /* Si quedara alguna clase vieja en Layout.astro, la neutralizamos */
+  .kid-panel {
+    width: 100%;
+    max-width: none;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Contenedor (como el prototipo: centrado, sin “marco”) */
+  .kid-container,
+  .kid-hero-inner,
+  .kid-features-shell {
+    width: 100%;
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .kid-container,
+    .kid-hero-inner,
+    .kid-features-shell {
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+  }
+
+  /* Colores/títulos */
   .kid-red {
     color: #d85a5a;
     font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
@@ -78,28 +105,209 @@
     @apply text-3xl md:text-4xl font-extrabold text-[#2f6ea9];
   }
 
-  /* Navegación (como prototipo: activa en azul) */
-  .kid-navlink {
-    @apply text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors;
-  }
-
-  .kid-navlink-active {
-    @apply text-[#2f6ea9];
-  }
-
   /* Botón naranja */
   .kid-btn {
     @apply inline-flex items-center justify-center rounded-2xl bg-[#ef8a1f] text-white font-extrabold
       shadow-[0_12px_25px_rgba(239,138,31,0.25)] hover:brightness-95 active:brightness-90 transition;
   }
 
-  /* Cards tipo prototipo (por defecto con blanco translúcido) */
+  /* Cards base */
   .kid-card {
     @apply rounded-2xl bg-white/60 ring-1 ring-black/5 shadow-[0_14px_35px_rgba(15,23,42,0.10)];
   }
 
-  /* Separador vertical */
   .kid-sep {
     @apply h-10 md:h-12;
+  }
+
+  /* ========= HERO (full-bleed + match prototipo) ========= */
+  .kid-hero {
+    width: 100%;
+  }
+
+  .kid-hero-shell {
+    position: relative;
+    padding-top: 18px;
+    padding-bottom: 28px;
+    background-image: url("/images/hero.jpg");
+    background-repeat: no-repeat;
+    background-position: 72% 32%;
+    background-size: cover; /* móvil/tablet */
+  }
+
+  /* En escritorio: menos zoom (como el prototipo) */
+  @media (min-width: 1024px) {
+    .kid-hero-shell {
+      background-size: 100% auto;
+      background-position: center top;
+    }
+  }
+
+  /* Overlay papel SOLO izquierda (no lava la ilustración derecha) */
+  .kid-hero-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(251, 244, 234, 0.92) 0%,
+      rgba(251, 244, 234, 0.74) 34%,
+      rgba(251, 244, 234, 0.18) 52%,
+      rgba(251, 244, 234, 0.00) 62%,
+      rgba(251, 244, 234, 0.00) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Fade inferior más alto (las 3 cards quedan sobre “papel”) */
+  .kid-hero-shell::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 220px;
+    z-index: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(251, 244, 234, 0.00) 0%,
+      rgba(251, 244, 234, 0.70) 40%,
+      rgba(251, 244, 234, 1.00) 100%
+    );
+    pointer-events: none;
+  }
+
+  .kid-header,
+  .kid-hero-grid,
+  .kid-features {
+    position: relative;
+    z-index: 1; /* por encima de ::before/::after */
+  }
+
+  /* Header */
+  .kid-header {
+    display: grid;
+    align-items: center;
+    gap: 12px;
+    grid-template-columns: 1fr auto;
+  }
+
+  @media (min-width: 768px) {
+    .kid-header {
+      grid-template-columns: 240px 1fr 200px;
+      gap: 16px;
+    }
+  }
+
+  .kid-brand img {
+    height: 46px;
+    width: auto;
+  }
+
+  .kid-nav {
+    display: none;
+    justify-content: center;
+    gap: 22px;
+    font-weight: 800;
+    font-size: 14px;
+    color: rgba(51, 65, 85, 0.85);
+  }
+
+  @media (min-width: 768px) {
+    .kid-nav {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .kid-nav a {
+    transition: color 160ms ease;
+  }
+
+  .kid-nav a:hover {
+    color: rgba(15, 23, 42, 0.95);
+  }
+
+  .kid-nav a.active {
+    color: #2f6ea9;
+  }
+
+  .kid-header-cta {
+    justify-self: end;
+    padding: 10px 18px;
+  }
+
+  /* Grid del hero */
+  .kid-hero-grid {
+    display: grid;
+    gap: 18px;
+    padding-top: 18px;
+  }
+
+  @media (min-width: 768px) {
+    .kid-hero-grid {
+      grid-template-columns: 560px 1fr;
+      align-items: center;
+      padding-top: 22px;
+    }
+  }
+
+  .kid-hero-h1 {
+    font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    font-size: 44px;
+  }
+
+  @media (min-width: 768px) {
+    .kid-hero-h1 {
+      font-size: 52px;
+    }
+  }
+
+  .kid-hero-lead {
+    margin-top: 14px;
+    max-width: 58ch;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(51, 65, 85, 0.9);
+  }
+
+  /* Features cards */
+  .kid-features {
+    margin-top: 16px;
+    padding-top: 10px;
+    padding-bottom: 14px;
+  }
+
+  .kid-feature-card {
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.90);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.10);
+    padding: 18px 18px;
+    text-align: center;
+  }
+
+  .kid-feature-pic {
+    height: 54px;
+    width: auto;
+    margin: 0 auto 10px;
+    object-fit: contain;
+  }
+
+  .kid-feature-title {
+    font-family: "Fredoka", "Nunito", ui-sans-serif, system-ui;
+    font-weight: 900;
+    color: #2f6ea9;
+    margin: 0;
+  }
+
+  .kid-feature-text {
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(71, 85, 105, 0.92);
   }
 }
